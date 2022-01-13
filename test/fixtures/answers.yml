@@ -3,7 +3,9 @@
 one:
   body: MyText
   correct?: false
+  belongs_to: 1
 
 two:
   body: MyText
   correct?: false
+  belongs_to: 1
