@@ -1,15 +1,16 @@
-
+<%= stylesheet_link_tag "chatwindow" %>
 <p>
   <%= @current_question.body%>
 
 </p>
 <p>
-  <%= button_to  @current_answer_a.body%>
+  <%= button_to  @current_answer_a.body, 'index', id:'answer_a', class:'answer_button', remote:true%>
 </p>
 <p>
-  <%= button_to @current_answer_b.body%>
+  <%= button_to @current_answer_b.body, 'index', id:'answer_b', class:'answer_button', remote:true%>
 </p>
 <p>
-  <%= button_to @current_answer_c.body%>
+  <%= button_to @current_answer_c.body, 'index', id:'answer_c', class:'answer_button', remote:true%>
 </p>
+
 

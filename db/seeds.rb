@@ -60,7 +60,8 @@ Answer.create([
                 { body: '1867 als Eintrag von Helena Demuth  im Poesiealbum von Jenny Marx unter dem' \
                         'Punkt "Lieblingsgetränk"', correct?: false, belongs_to: 8 },
                 { body: 'Auf Getränkerechnungen aus dem Jahr 1817', correct?: false, belongs_to: 8 },
-                { body: 'Im 1834 veröffentlichten "Et Lied vom Viez" von Philipp Laven ', correct?: true, belongs_to: 8 },
+                { body: 'Im 1834 veröffentlichten "Et Lied vom Viez" von Philipp Laven ',
+                  correct?: true, belongs_to: 8 },
                 # Answers to question 9
                 { body: 'bis zu 300', correct?: false, belongs_to: 9 },
                 { body: 'bis zu 3.000', correct?: true, belongs_to: 9 },
