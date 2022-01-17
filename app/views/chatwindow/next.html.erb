@@ -4,9 +4,12 @@
 
 </p>
 <div>
-  <%= button_to  @current_answer_a.body, 'chatwindow#next', id:'answer_a', class:'answer_button', remote:true%>
-  <%= button_to @current_answer_b.body, 'chatwindow#next', id:'answer_b', class:'answer_button', remote:true%>
-  <%= button_to @current_answer_c.body, 'chatwindow#next', id:'answer_c', class:'answer_button', remote:true%>
+  <%= button_to  @current_answer_a.body, {action:'next', value:@current_question.id}, method:'get', type:'submit', id:'answer_a', class:'answer_button',
+                 name: 'answer_a',  remote:false%>
+  <%= button_to @current_answer_b.body, {action:'next', value:@current_question.id}, method:'get', type:'submit', id:'answer_b', class:'answer_button',
+                remote:true%>
+  <%= button_to @current_answer_c.body, {action:'next', value:@current_question.id}, method:'get', type:'submit', id:'answer_c', class:'answer_button',
+                remote:true%>
 </div>
 
 
