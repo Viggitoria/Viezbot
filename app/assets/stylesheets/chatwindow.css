@@ -1,1 +1,41 @@
-body{background-color: orange}
+body{
+    background-color: black;
+    color: white;
+}
+
+.answer_button{
+    background: transparent;
+    box-shadow: none;
+    position: relative;
+    transform-origin: right top;
+    margin: 8px 0 10px;
+    padding: 10px;
+    max-width: 65%;
+    color: white;
+    border-radius: 25px;
+}
+
+p.question{
+    float: left;
+    position: relative;
+    background: orangered;
+    box-shadow: none;
+    transform-origin: right top;
+    margin: 8px 0 10px;
+    padding: 10px;
+    max-width: 65%;
+    color: white;
+    border-radius: 25px;
+}
+
+.answer_button:hover {
+    background-color: darkgrey;
+    border-color: orangered;
+}
+
+div.answers{
+    float: right;
+}
+div.question{
+    float: left;
+}
