@@ -1,19 +1,33 @@
 <%= stylesheet_link_tag "chatwindow" %>
-<div class = "chatwindow">
-<div class="question">
-  <p class="question">
-    <%= @current_question.body%>
-  </p>
+
+<div class="bubbleWrapper">
+  <div class="inlineContainer">
+    <div class="question bot">
+      <img class="inlineIcon" src="https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png">
+      <%= @current_question.body%>
+    </div>
+  </div>
 </div>
-<div class='answers'>
-  <p><%= button_to  @current_answer_a.body, {action:'next', value:@current_question.id}, method:'get', type:'submit', id:'answer_a', class:'answer_button',
-                    name: 'answer_a',  remote:false%>
-  </p>
-  <p><%= button_to @current_answer_b.body, {action:'next', value:@current_question.id}, method:'get', type:'submit', id:'answer_b', class:'answer_button',
-                   remote:true%>
-  </p>
-  <p><%= button_to @current_answer_c.body, {action:'next', value:@current_question.id}, method:'get', type:'submit', id:'answer_c', class:'answer_button',
-                   remote:true%>
-  </p>
-</div>
+
+<div class="bubbleWrapper">
+  <div class="inlineContainer.answer">
+    <div class= "answer_button.answer">
+      <img class="inlineIcon" src="https://www.pinclipart.com/picdir/middle/205-2059398_blinkk-en-mac-app-store-ninja-icon-transparent.png">
+      <p>
+        <%= button_to  @current_answer_a.body, {action:'next', value:@current_question.id}, method:'get', type:'submit', id:'answer_a', class:'answer_button',
+                       name: 'answer_a',  remote:false%>
+      </p>
+      <p>
+        <img class="inlineIcon" src="https://www.pinclipart.com/picdir/middle/205-2059398_blinkk-en-mac-app-store-ninja-icon-transparent.png">
+        <%= button_to @current_answer_b.body, {action:'next', value:@current_question.id}, method:'get', type:'submit', id:'answer_b', class:'answer_button',
+                      remote:true%>
+      </p>
+      <p>
+        <img class="inlineIcon" src="https://www.pinclipart.com/picdir/middle/205-2059398_blinkk-en-mac-app-store-ninja-icon-transparent.png">
+        <%= button_to @current_answer_c.body, {action:'next', value:@current_question.id}, method:'get', type:'submit', id:'answer_c', class:'answer_button',
+                      remote:true%>
+      </p>
+
+    </div>
+  </div>
 </div>
