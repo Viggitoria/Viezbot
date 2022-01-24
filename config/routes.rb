@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   root 'chatwindow#index'
   get '/chatwindow', to: 'chatwindow#index'
   get '/index/:value', to: 'chatwindow#index'
+  get '/chatwindow', to: 'chatwindow#index'
   # Defines the root path route ("/")
 end

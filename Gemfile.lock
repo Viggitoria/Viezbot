@@ -107,7 +107,7 @@ GEM
     minitest (5.15.0)
     msgpack (1.4.2)
     nio4r (2.5.8)
-    nokogiri (1.12.5-x64-mingw32)
+    nokogiri (1.12.5-x86_64-darwin)
       racc (~> 1.4)
     pg (1.2.3)
     public_suffix (4.0.6)
@@ -168,8 +168,6 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
-    tzinfo-data (1.2021.5)
-      tzinfo (>= 1.0.0)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -188,6 +186,7 @@ GEM
 
 PLATFORMS
   x64-mingw32
+  x86_64-darwin-21
 
 DEPENDENCIES
   bootsnap
