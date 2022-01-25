@@ -1,33 +1,123 @@
-<%= stylesheet_link_tag "chatwindow" %>
 
-<div class="bubbleWrapper">
-  <div class="inlineContainer">
-    <div class="question bot">
-      <img class="inlineIcon" src="https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png">
-      <%= @current_question.body %>
-    </div>
-  </div>
-</div>
 
-<div class="bubbleWrapper">
-  <div class="inlineContainer.answer">
-    <div class= "answer_button.answer">
-      <img class="inlineIcon" src="https://www.pinclipart.com/picdir/middle/205-2059398_blinkk-en-mac-app-store-ninja-icon-transparent.png">
-      <p>
-        <%= button_to  @current_answer_a.body, {action:'index', value:@current_question.id}, method:'post', type:'submit', id:'answer_a', class:'answer_button',
-                       name: 'answer_a',  remote:false%>
-      </p>
-      <p>
-        <img class="inlineIcon" src="https://www.pinclipart.com/picdir/middle/205-2059398_blinkk-en-mac-app-store-ninja-icon-transparent.png">
-        <%= button_to @current_answer_b.body, {action:'index', value:@current_question.id}, method:'post', type:'submit', id:'answer_b', class:'answer_button',
-                      remote:true%>
-      </p>
-      <p>
-        <img class="inlineIcon" src="https://www.pinclipart.com/picdir/middle/205-2059398_blinkk-en-mac-app-store-ninja-icon-transparent.png">
-        <%= button_to @current_answer_c.body, {action:'index', value:@current_question.id}, method:'post', type:'submit', id:'answer_c', class:'answer_button',
-                      remote:true%>
-      </p>
+<head>
+  <meta charset="UTF-8">
+  <title>Viezbot</title>
 
-    </div>
-  </div>
-</div>
+  <!-- for mobile screens -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <%= stylesheet_link_tag "reply" %>
+  <%= stylesheet_link_tag "says" %>
+  <%= stylesheet_link_tag "setup" %>
+  <%= stylesheet_link_tag "typing" %>
+  <%= stylesheet_link_tag "input" %>
+
+  <style>
+      body {
+          background: #7A311D;
+      }
+      .bubble-container {
+          height: 100vh;
+      }
+      .bubble-container .input-wrap textarea {
+          margin: 0;
+          width: calc(100% - 30px);
+      }
+  </style>
+</head>
+
+
+<body>
+<!-- container element for chat window -->
+<div id="chat"></div>
+
+<!-- import the JavaScript file -->
+<%= javascript_include_tag('chat') %>
+
+
+<script>
+    // initialize by constructing a named function...
+    var chatWindow = new Bubbles(
+        document.getElementById("chat"), // ...passing HTML container element...
+        "chatWindow" // ...and name of the function as a parameter
+    )
+
+    // `.talk()` will get your bot to begin the conversation
+    chatWindow.talk(
+        // pass your JSON/JavaScript object to `.talk()` function where
+        // you define how the conversation between the bot and user will go
+        {
+            // "ice" (as in "breaking the ice") is a required conversation object
+            // that maps the first thing the bot will say to the user
+            ice: {
+                says: [
+                    "Hallo!",
+                    "Ich bin Volker, der Viezexperte.",
+                    "Hast du Lust auf ein kleines Quiz, um dein Viez Wissen zu testen? 🍎"
+                ],
+
+                reply: [
+                    {
+                        question: "Ja, klar. Los geht's! 😊", // label for the reply option
+                        answer: "enter-name" // key for the next conversation object
+                    },
+                    {
+                        question: "Nein, Danke.", // label for the reply option
+                        answer: "no-quiz" // key for an "escape valve"; we refer to this whenever a reply signals the end of the convo
+                    }
+                ]
+            },
+
+            "enter-name":{
+                says: [
+                    "Wie heisst du?"
+                ],
+
+                reply: [
+                    {
+                        question: "Ich heiße NAME.",
+                        answer: "chapter-one"
+                    },
+                    {
+                        question: "Das geht dich gar nichts an.",
+                        answer: "chapter-one"
+                    }
+                ]
+            },
+
+            "chapter-one":{
+                says: ["<%= @current_question.body%>"],
+                // "reply" is an array of possible options the user can pick from
+                // as a reply
+                reply: [
+                    {
+                        question: "<%=@current_answer_a.body%>", // label for the reply option
+                        answer: "chapter-two" // key for the next conversation object
+                    },
+                    {
+                        question: "<%=@current_answer_b.body%>",
+                        answer: "chapter-two"
+                    },
+                    {
+                    question: "<%=@current_answer_c.body%>",
+                    answer: "chapter-two"
+                    }
+                ]
+            },
+
+            "no-quiz": {
+                says: [
+                "Schade, aber stattdessen kann ich dir einen Fun-Fact zu Viez erzählen: FUN FACT"
+                ],
+            reply: [
+            {
+                question: "Hier muss FUN FACT random hingeschrieben werden",
+                answer: "end"
+            }
+        ]
+    },
+        } // end conversation object
+    )
+</script>
+</body>
