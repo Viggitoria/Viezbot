@@ -1,14 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
   <title>Viezbot</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "reply" %>
+  <%= stylesheet_link_tag "says" %>
+  <%= stylesheet_link_tag "setup" %>
+  <%= stylesheet_link_tag "typing" %>
+  <%= stylesheet_link_tag "input" %>
   <%= javascript_importmap_tags %>
-</head>
 
+  <style>
+      body {
+          background: #7A311D;
+      }
+      .bubble-container {
+          height: 100vh;
+      }
+      .bubble-container .input-wrap textarea {
+          margin: 0;
+          width: calc(100% - 30px);
+      }
+  </style>
+
+</head>
 <body>
 <%= yield %>
 </body>

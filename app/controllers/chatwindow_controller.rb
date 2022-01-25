@@ -11,5 +11,6 @@ class ChatwindowController < ApplicationController
     @current_answer_b = @answers.find(@current_answer_a.id + 1)
     @current_answer_c = @answers.last
     $current += 1
+    $current = 1 if $current > 10
   end
 end

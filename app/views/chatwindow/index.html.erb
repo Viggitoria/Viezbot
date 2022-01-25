@@ -1,34 +1,5 @@
 
 
-<head>
-  <meta charset="UTF-8">
-  <title>Viezbot</title>
-
-  <!-- for mobile screens -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <%= stylesheet_link_tag "reply" %>
-  <%= stylesheet_link_tag "says" %>
-  <%= stylesheet_link_tag "setup" %>
-  <%= stylesheet_link_tag "typing" %>
-  <%= stylesheet_link_tag "input" %>
-
-  <style>
-      body {
-          background: #7A311D;
-      }
-      .bubble-container {
-          height: 100vh;
-      }
-      .bubble-container .input-wrap textarea {
-          margin: 0;
-          width: calc(100% - 30px);
-      }
-  </style>
-</head>
-
-
-<body>
 <!-- container element for chat window -->
 <div id="chat"></div>
 
@@ -59,34 +30,34 @@
 
                 reply: [
                     {
-                        question: "Ja, klar. Los geht's! 😊", // label for the reply option
-                        answer: "enter-name" // key for the next conversation object
+                        question: "Ja, klar. Los gehts! 😊", // label for the reply option
+                        answer: "enter_name" // key for the next conversation object
                     },
                     {
                         question: "Nein, Danke.", // label for the reply option
-                        answer: "no-quiz" // key for an "escape valve"; we refer to this whenever a reply signals the end of the convo
+                        answer: "no_quiz" // key for an "escape valve"; we refer to this whenever a reply signals the end of the convo
                     }
                 ]
             },
 
-            "enter-name":{
+            enter_name: {
                 says: [
                     "Wie heisst du?"
                 ],
 
                 reply: [
                     {
-                        question: "Ich heiße NAME.",
-                        answer: "chapter-one"
+                        question: "Ich heisse NAME.",
+                        answer: "chapter_one"
                     },
                     {
                         question: "Das geht dich gar nichts an.",
-                        answer: "chapter-one"
+                        answer: "chapter_one"
                     }
                 ]
             },
 
-            "chapter-one":{
+            chapter_one: {
                 says: ["<%= @current_question.body%>"],
                 // "reply" is an array of possible options the user can pick from
                 // as a reply
@@ -106,7 +77,7 @@
                 ]
             },
 
-            "no-quiz": {
+            no_quiz: {
                 says: [
                 "Schade, aber stattdessen kann ich dir einen Fun-Fact zu Viez erzählen: FUN FACT"
                 ],
@@ -120,4 +91,3 @@
         } // end conversation object
     )
 </script>
-</body>
