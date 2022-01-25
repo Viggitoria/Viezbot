@@ -25,6 +25,7 @@
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/public/system" />
       <excludeFolder url="file://$MODULE_DIR$/components" />
+      <excludeFolder url="file://$MODULE_DIR$/tmp/cache" />
     </content>
     <orderEntry type="jdk" jdkName="ruby-3.0.2-p107" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
