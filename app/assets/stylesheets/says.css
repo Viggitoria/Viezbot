@@ -1,10 +1,11 @@
 /* style bubbles */
 .bubble,
 .bubble-typing {
-    color: #212121;
-    background: rgba(255, 255, 255, 0.84);
+    color: #F7F7F7;
+    background: rgb(235, 125, 90);
     padding: 8px 16px;
     border-radius: 5px 15px 15px 15px;
+    font-family: Roboto, sans-serif;
     font-weight: 400;
     text-transform: none;
     text-align: left;

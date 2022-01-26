@@ -7,7 +7,7 @@ function Bubbles(container, self, options) {
     widerBy = options.widerBy || 2 // add a little extra width to bubbles to make sure they don't break
     sidePadding = options.sidePadding || 6 // padding on both sides of chat bubbles
     recallInteractions = options.recallInteractions || 0 // number of interactions to be remembered and brought back upon restart
-    inputCallbackFn = options.inputCallbackFn || false // should we display an input field?
+    inputCallbackFn = options.inputCallbackFn || true // should we display an input field?
     responseCallbackFn = options.responseCallbackFn || false // is there a callback function for when a user clicks on a bubble button
 
     var standingAnswer = "ice" // remember where to restart convo if interrupted
@@ -210,6 +210,7 @@ function Bubbles(container, self, options) {
         }
         start()
     }
+
 
     // create a bubble
     var bubbleQueue = false

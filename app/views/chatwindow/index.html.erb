@@ -1,34 +1,3 @@
-
-
-<head>
-  <meta charset="UTF-8">
-  <title>Viezbot</title>
-
-  <!-- for mobile screens -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <%= stylesheet_link_tag "reply" %>
-  <%= stylesheet_link_tag "says" %>
-  <%= stylesheet_link_tag "setup" %>
-  <%= stylesheet_link_tag "typing" %>
-  <%= stylesheet_link_tag "input" %>
-
-  <style>
-      body {
-          background: #7A311D;
-      }
-      .bubble-container {
-          height: 100vh;
-      }
-      .bubble-container .input-wrap textarea {
-          margin: 0;
-          width: calc(100% - 30px);
-      }
-  </style>
-</head>
-
-
-<body>
 <!-- container element for chat window -->
 <div id="chat"></div>
 
@@ -38,16 +7,58 @@
 
 <script>
     // initialize by constructing a named function...
-    var chatWindow = new Bubbles(
-        document.getElementById("chat"), // ...passing HTML container element...
-        "chatWindow" // ...and name of the function as a parameter
-    )
+    // ...and add text processing plugin:
+    var chatWindow = new Bubbles(document.getElementById("chat"), "chatWindow", {
+        // the one that we care about is inputCallbackFn()
+        // this function returns an object with some data that we can process from user input
+        // and understand the context of it
+
+        // this is an example function that matches the text user typed to one of the answer bubbles
+        // this function does no natural language processing
+        // this is where you may want to connect this script to NLC backend.
+        inputCallbackFn: function(o) {
+            // add error conversation block & recall it if no answer matched
+            var miss = function() {
+                chatWindow.talk(
+                  {
+                      "i-dont-get-it": {
+                          says: [
+                              "Sorry, I don't get it 😕. Pls repeat? Or you can just click below 👇"
+                          ],
+                          reply: o.convo[o.standingAnswer].reply
+                      }
+                  },
+                  "i-dont-get-it"
+                )
+            }
+
+            // do this if answer found
+            var match = function(key) {
+                setTimeout(function() {
+                    chatWindow.talk(convo, key) // restart current convo from point found in the answer
+                }, 600)
+            }
+
+            // sanitize text for search function
+            var strip = function(text) {
+                return text.toLowerCase().replace(/[\s.,\/#!$%\^&\*;:{}=\-_'"`~()]/g, "")
+            }
+
+            // search function
+            var found = false
+            o.convo[o.standingAnswer].reply.forEach(function(e, i) {
+                strip(e.question).includes(strip(o.input)) && o.input.length > 0
+                  ? (found = e.answer)
+                  : found ? null : (found = false)
+            })
+            found ? match(found) : miss()
+        }
+    }) // done setting up chat-bubble
 
     // `.talk()` will get your bot to begin the conversation
-    chatWindow.talk(
+    var convo = {
         // pass your JSON/JavaScript object to `.talk()` function where
         // you define how the conversation between the bot and user will go
-        {
             // "ice" (as in "breaking the ice") is a required conversation object
             // that maps the first thing the bot will say to the user
             ice: {
@@ -59,65 +70,220 @@
 
                 reply: [
                     {
-                        question: "Ja, klar. Los geht's! 😊", // label for the reply option
-                        answer: "enter-name" // key for the next conversation object
+                        question: "Ja, klar. Los gehts! 😊", // label for the reply option
+                        answer: "enter_name" // key for the next conversation object
                     },
                     {
                         question: "Nein, Danke.", // label for the reply option
-                        answer: "no-quiz" // key for an "escape valve"; we refer to this whenever a reply signals the end of the convo
+                        answer: "no_quiz" // key for an "escape valve"; we refer to this whenever a reply signals the end of the convo
                     }
                 ]
             },
 
-            "enter-name":{
-                says: [
-                    "Wie heisst du?"
-                ],
+            enter_name: {
+                says: ["Wie heißt du?"],
 
                 reply: [
                     {
-                        question: "Ich heiße NAME.",
-                        answer: "chapter-one"
+                        question: "Ich heiße .",
+                        answer: "chapter_one"
                     },
                     {
                         question: "Das geht dich gar nichts an.",
-                        answer: "chapter-one"
+                        answer: "chapter_one"
                     }
                 ]
             },
 
-            "chapter-one":{
-                says: ["<%= @current_question.body%>"],
-                // "reply" is an array of possible options the user can pick from
-                // as a reply
+            chapter_one: {
+                says:   ["Super, NAME!",
+                        "Dann lass uns mit der ersten Frage starten. 😉",
+                        "Wenn du das Quiz komplett bearbeitest, erhältst du am Schluss auch eine kleine Auswertung, also bleib dran 😎",
+                        "<%=@questions.find(1).body%>"],
                 reply: [
                     {
-                        question: "<%=@current_answer_a.body%>", // label for the reply option
-                        answer: "chapter-two" // key for the next conversation object
+                        question: "<%=@answers.find(1).body%>", // label for the reply option
+                        answer: "chapter_two" // key for the next conversation object
                     },
                     {
-                        question: "<%=@current_answer_b.body%>",
-                        answer: "chapter-two"
+                        question: "<%=@answers.find(2).body%>",
+                        answer: "chapter_two"
                     },
                     {
-                    question: "<%=@current_answer_c.body%>",
-                    answer: "chapter-two"
+                        question: "<%=@answers.find(3).body%>",
+                        answer: "chapter_two"
                     }
                 ]
             },
-
-            "no-quiz": {
+            chapter_two: {
+                says:   ["<%=@questions.find(2).body%>"],
+                reply: [
+                    {
+                        question: "<%=@answers.find(4).body%>", // label for the reply option
+                        answer: "chapter_three" // key for the next conversation object
+                    },
+                    {
+                        question: "<%=@answers.find(5).body%>",
+                        answer: "chapter_three"
+                    },
+                    {
+                        question: "<%=@answers.find(6).body%>",
+                        answer: "chapter_three"
+                    }
+                ]
+            },
+            chapter_three: {
+                says:   ["<%=@questions.find(3).body%>"],
+                reply: [
+                    {
+                        question: "<%=@answers.find(7).body%>", // label for the reply option
+                        answer: "chapter_four" // key for the next conversation object
+                    },
+                    {
+                        question: "<%=@answers.find(8).body%>",
+                        answer: "chapter_four"
+                    },
+                    {
+                        question: "<%=@answers.find(9).body%>",
+                        answer: "chapter_four"
+                    }
+                ]
+            },
+            chapter_four: {
+                says:   ["<%=@questions.find(4).body%>"],
+                reply: [
+                    {
+                        question: "<%=@answers.find(10).body%>", // label for the reply option
+                        answer: "chapter_five" // key for the next conversation object
+                    },
+                    {
+                        question: "<%=@answers.find(11).body%>",
+                        answer: "chapter_five"
+                    },
+                    {
+                        question: "<%=@answers.find(12).body%>",
+                        answer: "chapter_five"
+                    }
+                ]
+            },
+            chapter_five: {
+                says:   ["<%=@questions.find(5).body%>"],
+                reply: [
+                    {
+                        question: "<%=@answers.find(13).body%>", // label for the reply option
+                        answer: "chapter_six" // key for the next conversation object
+                    },
+                    {
+                        question: "<%=@answers.find(14).body%>",
+                        answer: "chapter_six"
+                    },
+                    {
+                        question: "<%=@answers.find(15).body%>",
+                        answer: "chapter_six"
+                    }
+                ]
+            },
+            chapter_six: {
+                says:   ["<%=@questions.find(6).body%>"],
+                reply: [
+                    {
+                        question: "<%=@answers.find(16).body%>", // label for the reply option
+                        answer: "chapter_seven" // key for the next conversation object
+                    },
+                    {
+                        question: "<%=@answers.find(17).body%>",
+                        answer: "chapter_seven"
+                    },
+                    {
+                        question: "<%=@answers.find(18).body%>",
+                        answer: "chapter_seven"
+                    }
+                ]
+            },
+            chapter_seven: {
+                says:   ["<%=@questions.find(7).body%>"],
+                reply: [
+                    {
+                        question: "<%=@answers.find(19).body%>", // label for the reply option
+                        answer: "chapter_eight" // key for the next conversation object
+                    },
+                    {
+                        question: "<%=@answers.find(20).body%>",
+                        answer: "chapter_eight"
+                    },
+                    {
+                        question: "<%=@answers.find(21).body%>",
+                        answer: "chapter_eight"
+                    }
+                ]
+            },
+            chapter_eight: {
+                says:   ["<%=@questions.find(8).body%>"],
+                reply: [
+                    {
+                        question: "<%=@answers.find(22).body%>", // label for the reply option
+                        answer: "chapter_nine" // key for the next conversation object
+                    },
+                    {
+                        question: "<%=@answers.find(23).body%>",
+                        answer: "chapter_nine"
+                    },
+                    {
+                        question: "<%=@answers.find(24).body%>",
+                        answer: "chapter_nine"
+                    }
+                ]
+            },
+            chapter_nine: {
+                says:   ["<%=@questions.find(9).body%>"],
+                reply: [
+                    {
+                        question: "<%=@answers.find(25).body%>", // label for the reply option
+                        answer: "chapter_ten" // key for the next conversation object
+                    },
+                    {
+                        question: "<%=@answers.find(26).body%>",
+                        answer: "chapter_ten"
+                    },
+                    {
+                        question: "<%=@answers.find(27).body%>",
+                        answer: "chapter_ten"
+                    }
+                ]
+            },
+            chapter_ten: {
+                says:   ["<%=@questions.find(10).body%>"],
+                reply: [
+                    {
+                        question: "<%=@answers.find(28).body%>", // label for the reply option
+                        answer: "award" // key for the next conversation object
+                    },
+                    {
+                        question: "<%=@answers.find(29).body%>",
+                        answer: "award"
+                    },
+                    {
+                        question: "<%=@answers.find(30).body%>",
+                        answer: "award"
+                    }
+                ]
+            },
+            award: {
+                says:   ["Sehr toll!"],
+            },
+            no_quiz: {
                 says: [
-                "Schade, aber stattdessen kann ich dir einen Fun-Fact zu Viez erzählen: FUN FACT"
+                    "Schade, aber stattdessen kann ich dir einen Fun-Fact zu Viez erzählen: FUN FACT"
                 ],
-            reply: [
-            {
-                question: "Hier muss FUN FACT random hingeschrieben werden",
-                answer: "end"
-            }
-        ]
-    },
-        } // end conversation object
-    )
+                reply: [
+                    {
+                        question: "Hier muss FUN FACT random hingeschrieben werden",
+                        answer: "end"
+                    }
+                ]
+            },
+    } // end conversation object
+
+
+    chatWindow.talk(convo)
 </script>
-</body>
