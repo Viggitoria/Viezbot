@@ -11,9 +11,7 @@ function Bubbles(container, self, options) {
     responseCallbackFn = options.responseCallbackFn || false // is there a callback function for when a user clicks on a bubble button
 
     var standingAnswer = "ice" // remember where to restart convo if interrupted
-
     var correct_answers = 0 // saves how many answers were correctly answered
-
     var _convo = {} // local memory for conversation JSON object
     //--> NOTE that this object is only assigned once, per session and does not change for this
     // 		constructor name during open session.
@@ -146,7 +144,11 @@ function Bubbles(container, self, options) {
                     questionsHTML +=
                         '<span class="bubble-button" style="animation-delay: ' +
                         animationTime / 2 * count +
-                        'ms" onClick="' +
+                        'ms" ' +
+                        'value = "' +
+                        correct_answers
+                        +'" ' +
+                        'onClick="' +
                         self +
                         ".answer('" +
                         el.answer +
@@ -168,8 +170,9 @@ function Bubbles(container, self, options) {
         })
     }
     // navigate "answers"
+
     this.answer = function(key, content, bool) {
-        var quiz_result = save_booleans(bool)
+        count_right_answers(bool) // counts the right answers
         var func = function(key, content) {
             typeof window[key] === "function" ? window[key](content) : false
         }
@@ -309,10 +312,10 @@ function Bubbles(container, self, options) {
         )
     }
 
-    var save_booleans = function (bool){
+    var count_right_answers = function (bool){
         if(bool === 'true'){
             correct_answers += 1
         }
-        return correct_answers
+        console.log(correct_answers)
     }
 }
