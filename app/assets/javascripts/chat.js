@@ -12,6 +12,8 @@ function Bubbles(container, self, options) {
 
     var standingAnswer = "ice" // remember where to restart convo if interrupted
 
+    var correct_answers = 0 // saves how many answers were correctly answered
+
     var _convo = {} // local memory for conversation JSON object
     //--> NOTE that this object is only assigned once, per session and does not change for this
     // 		constructor name during open session.
@@ -141,7 +143,6 @@ function Bubbles(container, self, options) {
             turn.reply.reverse()
             for (var i = 0; i < turn.reply.length; i++) {
                 ;(function(el, count) {
-                    var result = save_booleans(el.correct)
                     questionsHTML +=
                         '<span class="bubble-button" style="animation-delay: ' +
                         animationTime / 2 * count +
@@ -151,6 +152,8 @@ function Bubbles(container, self, options) {
                         el.answer +
                         "', '" +
                         el.question +
+                        "', '" +
+                        el.correct +
                         "');this.classList.add('bubble-pick')\">" +
                         el.question +
                         "</span>"
@@ -165,7 +168,8 @@ function Bubbles(container, self, options) {
         })
     }
     // navigate "answers"
-    this.answer = function(key, content) {
+    this.answer = function(key, content, bool) {
+        var quiz_result = save_booleans(bool)
         var func = function(key, content) {
             typeof window[key] === "function" ? window[key](content) : false
         }
@@ -211,8 +215,6 @@ function Bubbles(container, self, options) {
         }
         start()
     }
-
-
     // create a bubble
     var bubbleQueue = false
     var addBubble = function(say, posted, reply, live) {
@@ -308,12 +310,9 @@ function Bubbles(container, self, options) {
     }
 
     var save_booleans = function (bool){
-        var correct_answers = 0
-        if(bool === true){
+        if(bool === 'true'){
             correct_answers += 1
-
         }
-        console.log(correct_answers)
         return correct_answers
     }
 }
