@@ -313,7 +313,6 @@ function Bubbles(container, self, options) {
     }
     var count = 0
     var count_right_answers = function (bool){
-        console.log(bool)
         if (bool === 'undefined'){
             return
         }
