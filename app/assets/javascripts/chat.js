@@ -247,6 +247,7 @@ function Bubbles(container, self, options) {
                     for (var i = 0; i < bubbleButtons.length; i++) {
                         ;(function(el) {
                             el.style.width = 0 + "px"
+                            el.style.height = 0 + "px"
                             el.classList.contains("bubble-pick") ? (el.style.width = "") : false
                             el.removeAttribute("onclick")
                         })(bubbleButtons[i])
@@ -311,11 +312,20 @@ function Bubbles(container, self, options) {
             false
         )
     }
-
+    var count = 0
     var count_right_answers = function (bool){
-        if(bool === 'true'){
+        console.log(bool)
+        if (bool === 'undefined'){
+            return
+        }
+        if (bool === "true"){
             correct_answers += 1
+        }
+        count += 1
+        if(count === 10){
+            let result = correct_answers/10
         }
         console.log(correct_answers)
     }
+
 }
