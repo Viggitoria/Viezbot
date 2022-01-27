@@ -247,7 +247,6 @@ function Bubbles(container, self, options) {
                     for (var i = 0; i < bubbleButtons.length; i++) {
                         ;(function(el) {
                             el.style.width = 0 + "px"
-                            el.style.height = 0 + "px"
                             el.classList.contains("bubble-pick") ? (el.style.width = "") : false
                             el.removeAttribute("onclick")
                         })(bubbleButtons[i])
