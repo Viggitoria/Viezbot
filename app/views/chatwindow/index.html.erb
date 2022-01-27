@@ -41,7 +41,7 @@
 
             // sanitize text for search function
             var strip = function(text) {
-                return text.toLowerCase().replace(/[\s.,\/#!$%\^&\*;:{}=\-_'"`~()]/g, "")
+                return text.toLowerCase().replace(/[\s.,\/#!$%^&*;:{}=\-_'"`~()]/g, "")
             }
 
             // search function
@@ -99,171 +99,171 @@
                 says:   ["Super, NAME!",
                         "Dann lass uns mit der ersten Frage starten. 😉",
                         "Wenn du das Quiz komplett bearbeitest, erhältst du am Schluss auch eine kleine Auswertung, also bleib dran 😎",
-                        "<%=@questions.find(1).body%>"],
+                        "<%=@question_array[0].body%>"],
                 reply: [
                     {
-                        question: "<%=@answers.find(1).body%>", // label for the reply option
+                        question: "<%=@question_array[0].answers.first.body%>", // label for the reply option
                         answer: "chapter_two" // key for the next conversation object
                     },
                     {
-                        question: "<%=@answers.find(2).body%>",
+                        question: "<%=@question_array[0].answers.find(@question_array[0].answers.first.id + 1).body%>",
                         answer: "chapter_two"
                     },
                     {
-                        question: "<%=@answers.find(3).body%>",
+                        question: "<%=@question_array[0].answers.last.body%>",
                         answer: "chapter_two"
                     }
                 ]
             },
             chapter_two: {
-                says:   ["<%=@questions.find(2).body%>"],
+                says:   ["<%=@question_array[1].body%>"],
                 reply: [
                     {
-                        question: "<%=@answers.find(4).body%>", // label for the reply option
+                        question: "<%=@question_array[1].answers.first.body%>", // label for the reply option
                         answer: "chapter_three" // key for the next conversation object
                     },
                     {
-                        question: "<%=@answers.find(5).body%>",
+                        question: "<%=@question_array[1].answers.find(@question_array[1].answers.first.id + 1).body%>",
                         answer: "chapter_three"
                     },
                     {
-                        question: "<%=@answers.find(6).body%>",
+                        question: "<%=@question_array[1].answers.last.body%>",
                         answer: "chapter_three"
                     }
                 ]
             },
             chapter_three: {
-                says:   ["<%=@questions.find(3).body%>"],
+                says:   ["<%=@question_array[2].body%>"],
                 reply: [
                     {
-                        question: "<%=@answers.find(7).body%>", // label for the reply option
+                        question: "<%=@question_array[2].answers.first.body%>", // label for the reply option
                         answer: "chapter_four" // key for the next conversation object
                     },
                     {
-                        question: "<%=@answers.find(8).body%>",
+                        question: "<%=@question_array[2].answers.find(@question_array[2].answers.first.id + 1).body%>",
                         answer: "chapter_four"
                     },
                     {
-                        question: "<%=@answers.find(9).body%>",
+                        question: "<%=@question_array[2].answers.last.body%>",
                         answer: "chapter_four"
                     }
                 ]
             },
             chapter_four: {
-                says:   ["<%=@questions.find(4).body%>"],
+                says:   ["<%=@question_array[3].body%>"],
                 reply: [
                     {
-                        question: "<%=@answers.find(10).body%>", // label for the reply option
+                        question: "<%=@question_array[3].answers.first.body%>", // label for the reply option
                         answer: "chapter_five" // key for the next conversation object
                     },
                     {
-                        question: "<%=@answers.find(11).body%>",
+                        question: "<%=@question_array[3].answers.find(@question_array[3].answers.first.id + 1).body%>",
                         answer: "chapter_five"
                     },
                     {
-                        question: "<%=@answers.find(12).body%>",
+                        question: "<%=@question_array[3].answers.last.body%>",
                         answer: "chapter_five"
                     }
                 ]
             },
             chapter_five: {
-                says:   ["<%=@questions.find(5).body%>"],
+                says:   ["<%=@question_array[4].body%>"],
                 reply: [
                     {
-                        question: "<%=@answers.find(13).body%>", // label for the reply option
+                        question: "<%=@question_array[4].answers.first.body%>", // label for the reply option
                         answer: "chapter_six" // key for the next conversation object
                     },
                     {
-                        question: "<%=@answers.find(14).body%>",
+                        question: "<%=@question_array[4].answers.find(@question_array[4].answers.first.id + 1).body%>",
                         answer: "chapter_six"
                     },
                     {
-                        question: "<%=@answers.find(15).body%>",
+                        question: "<%=@question_array[4].answers.last.body%>",
                         answer: "chapter_six"
                     }
                 ]
             },
             chapter_six: {
-                says:   ["<%=@questions.find(6).body%>"],
+                says:   ["<%=@question_array[5].body%>"],
                 reply: [
                     {
-                        question: "<%=@answers.find(16).body%>", // label for the reply option
+                        question: "<%=@question_array[5].answers.first.body%>", // label for the reply option
                         answer: "chapter_seven" // key for the next conversation object
                     },
                     {
-                        question: "<%=@answers.find(17).body%>",
+                        question: "<%=@question_array[5].answers.find(@question_array[5].answers.first.id + 1).body%>",
                         answer: "chapter_seven"
                     },
                     {
-                        question: "<%=@answers.find(18).body%>",
+                        question: "<%=@question_array[5].answers.last.body%>",
                         answer: "chapter_seven"
                     }
                 ]
             },
             chapter_seven: {
-                says:   ["<%=@questions.find(7).body%>"],
+                says:   ["<%=@question_array[6].body%>"],
                 reply: [
                     {
-                        question: "<%=@answers.find(19).body%>", // label for the reply option
+                        question: "<%=@question_array[6].answers.first.body%>", // label for the reply option
                         answer: "chapter_eight" // key for the next conversation object
                     },
                     {
-                        question: "<%=@answers.find(20).body%>",
+                        question: "<%=@question_array[6].answers.find(@question_array[6].answers.first.id + 1).body%>",
                         answer: "chapter_eight"
                     },
                     {
-                        question: "<%=@answers.find(21).body%>",
+                        question: "<%=@question_array[6].answers.last.body%>",
                         answer: "chapter_eight"
                     }
                 ]
             },
             chapter_eight: {
-                says:   ["<%=@questions.find(8).body%>"],
+                says:   ["<%=@question_array[7].body%>"],
                 reply: [
                     {
-                        question: "<%=@answers.find(22).body%>", // label for the reply option
+                        question: "<%=@question_array[7].answers.first.body%>", // label for the reply option
                         answer: "chapter_nine" // key for the next conversation object
                     },
                     {
-                        question: "<%=@answers.find(23).body%>",
+                        question: "<%=@question_array[7].answers.find(@question_array[7].answers.first.id + 1).body%>",
                         answer: "chapter_nine"
                     },
                     {
-                        question: "<%=@answers.find(24).body%>",
+                        question: "<%=@question_array[7].answers.last.body%>",
                         answer: "chapter_nine"
                     }
                 ]
             },
             chapter_nine: {
-                says:   ["<%=@questions.find(9).body%>"],
+                says:   ["<%=@question_array[8].body%>"],
                 reply: [
                     {
-                        question: "<%=@answers.find(25).body%>", // label for the reply option
+                        question: "<%=@question_array[8].answers.first.body%>", // label for the reply option
                         answer: "chapter_ten" // key for the next conversation object
                     },
                     {
-                        question: "<%=@answers.find(26).body%>",
+                        question: "<%=@question_array[8].answers.find(@question_array[8].answers.first.id + 1).body%>",
                         answer: "chapter_ten"
                     },
                     {
-                        question: "<%=@answers.find(27).body%>",
+                        question: "<%=@question_array[8].answers.last.body%>",
                         answer: "chapter_ten"
                     }
                 ]
             },
             chapter_ten: {
-                says:   ["<%=@questions.find(10).body%>"],
+                says:   ["<%=@question_array[9].body%>"],
                 reply: [
                     {
-                        question: "<%=@answers.find(28).body%>", // label for the reply option
+                        question: "<%=@question_array[9].answers.first.body%>", // label for the reply option
                         answer: "award" // key for the next conversation object
                     },
                     {
-                        question: "<%=@answers.find(29).body%>",
+                        question: "<%=@question_array[9].answers.find(@question_array[9].answers.first.id + 1).body%>",
                         answer: "award"
                     },
                     {
-                        question: "<%=@answers.find(30).body%>",
+                        question: "<%=@question_array[9].answers.last.body%>",
                         answer: "award"
                     }
                 ]
