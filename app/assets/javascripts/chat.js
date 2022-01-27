@@ -81,7 +81,7 @@ function Bubbles(container, self, options) {
         inputWrap.appendChild(inputText)
         inputText.addEventListener("keypress", function(e) {
             // register user input
-            if (e.keyCode === 13) { // depreceated, may use KeyboardEvent.code instead.
+            if (e.keyCode === 13) { // depreceated
                 e.preventDefault()
                 typeof bubbleQueue !== false ? clearTimeout(bubbleQueue) : false // allow user to interrupt the bot
                 var lastBubble = document.querySelectorAll(".bubble.say")
@@ -141,6 +141,7 @@ function Bubbles(container, self, options) {
             turn.reply.reverse()
             for (var i = 0; i < turn.reply.length; i++) {
                 ;(function(el, count) {
+                    var result = save_booleans(el.correct)
                     questionsHTML +=
                         '<span class="bubble-button" style="animation-delay: ' +
                         animationTime / 2 * count +
@@ -175,7 +176,7 @@ function Bubbles(container, self, options) {
         // add re-generated user picks to the history stack
         if (_convo[key] !== undefined && content !== undefined) {
             interactionsSave(
-                '<span class="bubble-button reply-pick">' + content + "</span>",
+                '<span class="bubble-button reply-pick" >' + content + "</span>",
                 "reply reply-pick"
             )
         }
@@ -245,6 +246,7 @@ function Bubbles(container, self, options) {
                             el.removeAttribute("onclick")
                         })(bubbleButtons[i])
                     }
+
                     this.classList.add("bubble-picked")
                 }
             })
@@ -303,5 +305,15 @@ function Bubbles(container, self, options) {
             interactionsHistory[i].reply,
             false
         )
+    }
+
+    var save_booleans = function (bool){
+        var correct_answers = 0
+        if(bool === true){
+            correct_answers += 1
+
+        }
+        console.log(correct_answers)
+        return correct_answers
     }
 }

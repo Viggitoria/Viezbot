@@ -71,7 +71,7 @@
                 reply: [
                     {
                         question: "Ja, klar. Los gehts! 😊", // label for the reply option
-                        answer: "enter_name" // key for the next conversation object
+                        answer: "chapter_one" // key for the next conversation object
                     },
                     {
                         question: "Nein, Danke.", // label for the reply option
@@ -80,7 +80,7 @@
                 ]
             },
 
-            enter_name: {
+      /*      enter_name: {
                 says: ["Wie heißt du?"],
 
                 reply: [
@@ -93,25 +93,28 @@
                         answer: "chapter_one"
                     }
                 ]
-            },
+            }, */
 
             chapter_one: {
-                says:   ["Super, NAME!",
+                says:   ["Super!",
                         "Dann lass uns mit der ersten Frage starten. 😉",
                         "Wenn du das Quiz komplett bearbeitest, erhältst du am Schluss auch eine kleine Auswertung, also bleib dran 😎",
                         "<%=@question_array[0].body%>"],
                 reply: [
                     {
                         question: "<%=@question_array[0].answers.first.body%>", // label for the reply option
-                        answer: "chapter_two" // key for the next conversation object
+                        answer: "chapter_two", // key for the next conversation object
+                        correct: <%= @question_array[0].answers.first.correct?%>
                     },
                     {
                         question: "<%=@question_array[0].answers.find(@question_array[0].answers.first.id + 1).body%>",
-                        answer: "chapter_two"
+                        answer: "chapter_two",
+                        correct: <%=@question_array[0].answers.find(@question_array[0].answers.first.id + 1).correct?%>
                     },
                     {
                         question: "<%=@question_array[0].answers.last.body%>",
-                        answer: "chapter_two"
+                        answer: "chapter_two",
+                        correct: <%=@question_array[0].answers.last.correct?%>
                     }
                 ]
             },
@@ -120,7 +123,8 @@
                 reply: [
                     {
                         question: "<%=@question_array[1].answers.first.body%>", // label for the reply option
-                        answer: "chapter_three" // key for the next conversation object
+                        answer: "chapter_three", // key for the next conversation object
+                        correct: <%= @question_array[1].answers.first.correct?%>
                     },
                     {
                         question: "<%=@question_array[1].answers.find(@question_array[1].answers.first.id + 1).body%>",
@@ -137,7 +141,8 @@
                 reply: [
                     {
                         question: "<%=@question_array[2].answers.first.body%>", // label for the reply option
-                        answer: "chapter_four" // key for the next conversation object
+                        answer: "chapter_four", // key for the next conversation object
+                        correct: <%= @question_array[2].answers.first.correct?%>
                     },
                     {
                         question: "<%=@question_array[2].answers.find(@question_array[2].answers.first.id + 1).body%>",
@@ -154,7 +159,8 @@
                 reply: [
                     {
                         question: "<%=@question_array[3].answers.first.body%>", // label for the reply option
-                        answer: "chapter_five" // key for the next conversation object
+                        answer: "chapter_five", // key for the next conversation object
+                        correct: <%= @question_array[3].answers.first.correct?%>
                     },
                     {
                         question: "<%=@question_array[3].answers.find(@question_array[3].answers.first.id + 1).body%>",
@@ -171,7 +177,8 @@
                 reply: [
                     {
                         question: "<%=@question_array[4].answers.first.body%>", // label for the reply option
-                        answer: "chapter_six" // key for the next conversation object
+                        answer: "chapter_six", // key for the next conversation object
+                        correct: <%= @question_array[4].answers.first.correct?%>
                     },
                     {
                         question: "<%=@question_array[4].answers.find(@question_array[4].answers.first.id + 1).body%>",
@@ -188,7 +195,8 @@
                 reply: [
                     {
                         question: "<%=@question_array[5].answers.first.body%>", // label for the reply option
-                        answer: "chapter_seven" // key for the next conversation object
+                        answer: "chapter_seven", // key for the next conversation object
+                        correct: <%= @question_array[5].answers.first.correct?%>
                     },
                     {
                         question: "<%=@question_array[5].answers.find(@question_array[5].answers.first.id + 1).body%>",
@@ -205,7 +213,8 @@
                 reply: [
                     {
                         question: "<%=@question_array[6].answers.first.body%>", // label for the reply option
-                        answer: "chapter_eight" // key for the next conversation object
+                        answer: "chapter_eight", // key for the next conversation object
+                        correct: <%= @question_array[6].answers.first.correct?%>
                     },
                     {
                         question: "<%=@question_array[6].answers.find(@question_array[6].answers.first.id + 1).body%>",
@@ -222,7 +231,8 @@
                 reply: [
                     {
                         question: "<%=@question_array[7].answers.first.body%>", // label for the reply option
-                        answer: "chapter_nine" // key for the next conversation object
+                        answer: "chapter_nine", // key for the next conversation object
+                        correct: <%= @question_array[7].answers.first.correct?%>
                     },
                     {
                         question: "<%=@question_array[7].answers.find(@question_array[7].answers.first.id + 1).body%>",
@@ -239,7 +249,8 @@
                 reply: [
                     {
                         question: "<%=@question_array[8].answers.first.body%>", // label for the reply option
-                        answer: "chapter_ten" // key for the next conversation object
+                        answer: "chapter_ten", // key for the next conversation object
+                        correct: <%= @question_array[8].answers.first.correct?%>
                     },
                     {
                         question: "<%=@question_array[8].answers.find(@question_array[8].answers.first.id + 1).body%>",
@@ -256,7 +267,8 @@
                 reply: [
                     {
                         question: "<%=@question_array[9].answers.first.body%>", // label for the reply option
-                        answer: "award" // key for the next conversation object
+                        answer: "award", // key for the next conversation object
+                        correct: <%= @question_array[9].answers.first.correct?%>
                     },
                     {
                         question: "<%=@question_array[9].answers.find(@question_array[9].answers.first.id + 1).body%>",
