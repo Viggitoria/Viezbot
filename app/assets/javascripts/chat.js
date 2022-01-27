@@ -12,6 +12,7 @@ function Bubbles(container, self, options) {
 
     var standingAnswer = "ice" // remember where to restart convo if interrupted
     var correct_answers = 0 // saves how many answers were correctly answered
+
     var _convo = {} // local memory for conversation JSON object
     //--> NOTE that this object is only assigned once, per session and does not change for this
     // 		constructor name during open session.
@@ -145,9 +146,6 @@ function Bubbles(container, self, options) {
                         '<span class="bubble-button" style="animation-delay: ' +
                         animationTime / 2 * count +
                         'ms" ' +
-                        'value = "' +
-                        correct_answers
-                        +'" ' +
                         'onClick="' +
                         self +
                         ".answer('" +
@@ -172,7 +170,10 @@ function Bubbles(container, self, options) {
     // navigate "answers"
 
     this.answer = function(key, content, bool) {
-        count_right_answers(bool) // counts the right answers
+        var result = count_right_answers(bool) // counts the right answers
+        if (result !== "") {
+            key = result
+        }
         var func = function(key, content) {
             typeof window[key] === "function" ? window[key](content) : false
         }
@@ -313,17 +314,28 @@ function Bubbles(container, self, options) {
     }
     var count = 0
     var count_right_answers = function (bool){
+        var result = ""
         if (bool === 'undefined'){
-            return
+            return result
         }
         if (bool === "true"){
             correct_answers += 1
         }
         count += 1
         if(count === 10){
-            let result = correct_answers/10
+            if (correct_answers > 9)
+                return 'award1'
+            else if (correct_answers > 7){
+                return 'award2'
+            }
+            else if (correct_answers > 5){
+                return 'award3'
+            }
+            else if (correct_answers <= 5){
+                return 'award4'
+            }
         }
-        console.log(correct_answers)
+        return result
     }
 
 }
