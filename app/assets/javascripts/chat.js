@@ -323,12 +323,12 @@ function Bubbles(container, self, options) {
         }
         count += 1
         if(count === 10){
-            if (correct_answers > 9)
+            if (correct_answers >= 9)
                 return 'award1'
-            else if (correct_answers > 7){
+            else if (correct_answers >= 7){
                 return 'award2'
             }
-            else if (correct_answers > 5){
+            else if (correct_answers >= 6){
                 return 'award3'
             }
             else if (correct_answers <= 5){
