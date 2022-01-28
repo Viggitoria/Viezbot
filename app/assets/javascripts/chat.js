@@ -168,11 +168,13 @@ function Bubbles(container, self, options) {
         })
     }
     // navigate "answers"
-
     this.answer = function(key, content, bool) {
-        var result = count_right_answers(bool) // counts the right answers
-        if (result !== "") {
-            key = result
+        if(key.includes('chapter') || key === 'award')  {
+            var new_key = count_right_answers(bool) // evaluates the answers
+            if (new_key !== 'award') {
+                key = new_key
+                correct_answers = 0
+            }
         }
         var func = function(key, content) {
             typeof window[key] === "function" ? window[key](content) : false
@@ -314,10 +316,6 @@ function Bubbles(container, self, options) {
     }
     var count = 0
     var count_right_answers = function (bool){
-        var result = ""
-        if (bool === 'undefined'){
-            return result
-        }
         if (bool === "true"){
             correct_answers += 1
         }
@@ -335,7 +333,7 @@ function Bubbles(container, self, options) {
                 return 'award4'
             }
         }
-        return result
+        return 'award'
     }
 
 }
