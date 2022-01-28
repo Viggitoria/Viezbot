@@ -1,0 +1,2 @@
+class FunFact < ApplicationRecord
+end

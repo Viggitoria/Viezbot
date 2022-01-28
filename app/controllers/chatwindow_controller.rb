@@ -5,6 +5,7 @@ class ChatwindowController < ApplicationController
   def index
     @questions = Question.all
     @answers = Answer.all
+    @fun_fact = FunFact.all
 
     @question_array = []
 
@@ -13,5 +14,9 @@ class ChatwindowController < ApplicationController
       new_question = @questions.find(rand_num)
       @question_array.append(new_question) if @question_array.exclude?(new_question)
     end
+
+    new_num = rand(30..36)
+    @rand_fact = @fun_fact.find(new_num)
+
   end
 end

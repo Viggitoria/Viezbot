@@ -71,3 +71,13 @@ Answer.create([
                 { body: 'In der Gegend um Trier', correct?: false, question_id: 10 },
                 { body: 'In der Gegend um Wittlich', correct?: false, question_id: 10 }
               ])
+
+FunFact.create([
+  { body: 'Wusstest Du, dass die gängige Abkürzung für Viez mit Cola Covie lautet?' },
+  { body: 'Wusstest Du, dass sich unter den original Viezporzen der Aufdruck „GPS“ für Gebrüder Plein Speicher befindet?' },
+  { body: 'Wusstest Du, dass in vielen Kneipen Viez gezapft wird? Es bedarf dafür jedoch eigens hergestellte Schläuche, da die Säure des Viez die handelsüblichen auflöst.' },
+  { body: 'Wusstest Du, dass nicht überall der Viez aus einem Porz getrunken wird? Im Saarland reicht man das Getränk in einem Glaskrug.' },
+  { body: 'Wusstest Du, dass man ca. 1,3kg Äpfel für einen Liter Viez benötigt?' },
+  { body: 'Wusstest Du, dass es im Gegensatz zu vielen anderen traditionellen Getränken bei Viez keine Regeln gibt? Weder der Inhalt noch die Region in der das Getränk herstellt werden darf, ist begrenzt.' },
+  { body: 'Wusstest Du, dass erst in den letzten 40 Jahren Viez wieder für viele Menschen rund um Trier attraktiv geworden ist? In der Mitte des letzten Jahrhundert galt es als verstaubtes Altherrengetränk und fand bei jüngeren Menschen kaum Beachtung.'}
+])

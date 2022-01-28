@@ -23,7 +23,7 @@
                   {
                       "i-dont-get-it": {
                           says: [
-                              "Sorry, I don't get it 😕. Pls repeat? Or you can just click below 👇"
+                              "Das hab ich leider nicht verstanden 😕. Kannst du das nochmal wiederholen? Oder du klickst einfach eine der Antworten an 👇"
                           ],
                           reply: o.convo[o.standingAnswer].reply
                       }
@@ -317,15 +317,8 @@
             },
 
             no_quiz: {
-                says: [
-                    "Schade, aber stattdessen kann ich dir einen Fun-Fact zu Viez erzählen: FUN FACT"
-                ],
-                reply: [
-                    {
-                        question: "Hier muss FUN FACT random hingeschrieben werden",
-                        answer: "end"
-                    }
-                ]
+                says: ["Schade, aber stattdessen kann ich dir einen Fun-Fact zu Viez erzählen: ",
+                    "<%=@rand_fact.body%>"]
             },
     } // end conversation object
     chatWindow.talk(convo)
