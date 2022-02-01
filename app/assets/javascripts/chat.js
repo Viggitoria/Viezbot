@@ -1,6 +1,7 @@
 // core function
 function Bubbles(container, self, options) {
     // options
+
     options = typeof options !== "undefined" ? options : {}
     animationTime = options.animationTime || 200 // how long it takes to animate chat bubble, also set in CSS
     typeSpeed = options.typeSpeed || 5 // delay per character, to simulate the machine "typing"
@@ -10,8 +11,9 @@ function Bubbles(container, self, options) {
     inputCallbackFn = options.inputCallbackFn || true // should we display an input field?
     responseCallbackFn = options.responseCallbackFn || false // is there a callback function for when a user clicks on a bubble button
 
+    var correct_answers = 0
     var standingAnswer = "ice" // remember where to restart convo if interrupted
-    var correct_answers = 0 // saves how many answers were correctly answered
+     // saves how many answers were correctly answered
 
     var _convo = {} // local memory for conversation JSON object
     //--> NOTE that this object is only assigned once, per session and does not change for this
@@ -82,7 +84,7 @@ function Bubbles(container, self, options) {
         inputWrap.appendChild(inputText)
         inputText.addEventListener("keypress", function(e) {
             // register user input
-            if (e.keyCode === 13) { // depreceated
+            if (e.key === 'Enter') {
                 e.preventDefault()
                 typeof bubbleQueue !== false ? clearTimeout(bubbleQueue) : false // allow user to interrupt the bot
                 var lastBubble = document.querySelectorAll(".bubble.say")
@@ -173,7 +175,6 @@ function Bubbles(container, self, options) {
             var new_key = count_right_answers(bool) // evaluates the answers
             if (new_key !== 'award') {
                 key = new_key
-                correct_answers = 0
             }
         }
         var func = function(key, content) {

@@ -6,6 +6,7 @@
 
 
 <script>
+
     // initialize by constructing a named function...
     // ...and add text processing plugin:
     var chatWindow = new Bubbles(document.getElementById("chat"), "chatWindow", {
@@ -48,7 +49,7 @@
             var found = false
             o.convo[o.standingAnswer].reply.forEach(function(e, i) {
                 strip(e.question).includes(strip(o.input)) && o.input.length > 0
-                  ? (found = e.answer)
+                  ? (found = e.answer )
                   : found ? null : (found = false)
             })
             found ? match(found) : miss()
@@ -302,20 +303,20 @@
             award1: {
                 says:   [
                     "Wow! Du bist wirklich ein Viezexperte!",
-                    "Du hast den ersten Platz mit X/Y richtigen Antworten. Wie wäre es jetzt mit einem leckeren Viezkuchen zur Stärkung?",
+                    "Du hast den ersten Platz mit X von 10 richtigen Antworten. Wie wäre es jetzt mit einem leckeren Viezkuchen zur Stärkung?",
                     "Ein passendes Rezept findest du auch auf dieser Website 😉 - mer de liewe Viez off'm Desch! "
                 ],
             },
             award2: {
                 says:   [
-                  "Gratuliere! Du belegst den zweiten Platz mit X/Y richtigen Antworten!",
+                  "Gratuliere! Du belegst den zweiten Platz mit X von 10 richtigen Antworten!",
                     "Möchtest du eine Vieztour planen, um herauszufinden, welcher Viez dir am besten schmeckt? " +
                     "Dann schau doch auf unserer Karte vorbei. 😊"
                 ],
             },
             award3: {
                 says:   [
-                    "Du hast den dritten Platz mit X/Y Punkten erreicht.",
+                    "Du hast den dritten Platz mit X von 10 Punkten erreicht.",
                     "Da ist aber noch deutlich Luft nach oben!",
                     "Versuch es doch noch einmal, vielleicht klappt es ja diesmal!"
 
@@ -325,7 +326,7 @@
             says:   [
                 "Das war wohl eher nix ... Aber nichts, was sich nicht mit einer guten Porz Viez lösen ließe!",
                 "In diesem Sinne: Prost!",
-                "<img src = '<%= image_url('projektgruppe_mit_gluehviez.jpg') %>' alt = 'Wir stoßen mit Viez an'>"
+                "<img src = '<%= image_url('projektgruppe_mit_gluehviez.jpg') %>' alt = 'Wir stoßen mit Viez an' min-width = 100px>"
               ],
             },
 
