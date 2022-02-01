@@ -15,7 +15,7 @@ class ChatwindowController < ApplicationController
       @question_array.append(new_question) if @question_array.exclude?(new_question)
     end
 
-    new_num = rand(30..36)
+    new_num = rand(37..45)
     @rand_fact = @fun_fact.find(new_num)
 
   end
