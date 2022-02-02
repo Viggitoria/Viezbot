@@ -13,7 +13,7 @@ function Bubbles(container, self, options) {
 
     var correct_answers = 0
     var standingAnswer = "ice" // remember where to restart convo if interrupted
-     // saves how many answers were correctly answered
+    // saves how many answers were correctly answered
 
     var _convo = {} // local memory for conversation JSON object
     //--> NOTE that this object is only assigned once, per session and does not change for this
@@ -336,5 +336,4 @@ function Bubbles(container, self, options) {
         }
         return 'award'
     }
-
 }
