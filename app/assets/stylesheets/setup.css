@@ -1,6 +1,6 @@
 /* setup container styles */
 .bubble-container {
-    background: #dcdde0;
+    background-image: url("background-img-1.png");
     height: 520px;
     max-width: 750px;
     width: 100%;
@@ -27,6 +27,6 @@ h1 {
     margin: .5em auto 0.15em;
 }
 body {
-    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-family: Roboto, sans-serif;
     margin: 0;
 }

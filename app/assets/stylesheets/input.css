@@ -5,12 +5,12 @@
     left: 0;
     right: 0;
     font-family: "Helvetica Neue", Helvetica, sans-serif;
-    color: #2c2c2c;
+    color: #434A54;
 }
 .bubble-container .input-wrap textarea {
     width: calc(100% - 20px);
-    font-family: "Helvetica Neue", Helvetica, sans-serif;
-    color: #2c2c2c;
+    font-family: Roboto, sans-serif;
+    color: #434A54;
     background: rgba(250, 250, 250, 0.95);
     font-size: 1em;
     letter-spacing: .5px;

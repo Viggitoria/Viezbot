@@ -66,7 +66,8 @@
                 says: [
                     "Hallo!",
                     "Ich bin Volker, der Viezexperte.",
-                    "Hast du Lust auf ein kleines Quiz, um dein Viez Wissen zu testen? 🍎",
+                    "Hast Du Lust auf ein kleines Quiz, um Dein Viez Wissen zu testen? 🍎",
+                    "Es besteht aus insgesamt 10 Fragen.",
                 ],
 
                 reply: [
@@ -77,29 +78,14 @@
                     {
                         question: "Nein, Danke.", // label for the reply option
                         answer: "no_quiz" // key for an "escape valve"; we refer to this whenever a reply signals the end of the convo
-                    }
+                    },
                 ]
             },
-
-      /*      enter_name: {
-                says: ["Wie heißt du?"],
-
-                reply: [
-                    {
-                        question: "Ich heiße .",
-                        answer: "chapter_one"
-                    },
-                    {
-                        question: "Das geht dich gar nichts an.",
-                        answer: "chapter_one"
-                    }
-                ]
-            }, */
 
             chapter_one: {
                 says:   ["Super!",
                         "Dann lass uns mit der ersten Frage starten. 😉",
-                        "Wenn du das Quiz komplett bearbeitest, erhältst du am Schluss auch eine kleine Auswertung, also bleib dran 😎",
+                        "Wenn Du das Quiz komplett bearbeitest, erhältst Du am Schluss auch eine kleine Auswertung, also bleib dran 😎",
                         "<%=@question_array[0].body%>"],
                 reply: [
                     {
@@ -302,21 +288,22 @@
 
             award1: {
                 says:   [
-                    "Wow! Du bist wirklich ein Viezexperte!",
-                    "Du hast den ersten Platz mit X von 10 richtigen Antworten. Wie wäre es jetzt mit einem leckeren Viezkuchen zur Stärkung?",
-                    "Ein passendes Rezept findest du auch auf dieser Website 😉 - mer de liewe Viez off'm Desch! "
+                    "Wow! Du bist wirklich ein Viezexperte! 🥇",
+                    "Du belegst den ersten Platz mit X von 10 richtigen Antworten. Wie wäre es jetzt mit einem leckeren Viezkuchen zur Stärkung?",
+                    "Ein passendes Rezept findest du auch auf dieser Website 😉 - mer liewe de Viez off'm Desch! ",
+                    "<img src = '<%= image_url('Viezkuchen.jpg') %>' alt = 'Viezkuchen' width='400' height='300'>"
                 ],
             },
             award2: {
                 says:   [
-                  "Gratuliere! Du belegst den zweiten Platz mit X von 10 richtigen Antworten!",
+                  "Gratuliere! Du belegst den zweiten Platz mit X von 10 richtigen Antworten! 🥈",
                     "Möchtest du eine Vieztour planen, um herauszufinden, welcher Viez dir am besten schmeckt? " +
                     "Dann schau doch auf unserer Karte vorbei. 😊"
                 ],
             },
             award3: {
                 says:   [
-                    "Du hast den dritten Platz mit X von 10 Punkten erreicht.",
+                    "Du hast den dritten Platz mit X von 10 Punkten erreicht. 🥉",
                     "Da ist aber noch deutlich Luft nach oben!",
                     "Versuch es doch noch einmal, vielleicht klappt es ja diesmal!"
 
@@ -326,14 +313,15 @@
             says:   [
                 "Das war wohl eher nix ... Aber nichts, was sich nicht mit einer guten Porz Viez lösen ließe!",
                 "In diesem Sinne: Prost!",
-                "<img src = '<%= image_url('projektgruppe_mit_gluehviez.jpg') %>' alt = 'Wir stoßen mit Viez an' min-width = 100px>"
+                "<img src = '<%= image_url('projektgruppe_mit_gluehviez.jpg') %>' alt = 'Wir stoßen mit Viez an' width='400' height='300'>"
               ],
             },
 
             no_quiz: {
-                says: ["Schade, aber stattdessen kann ich dir einen Fun-Fact zu Viez erzählen: ",
+                says: ["Schade, aber stattdessen kann ich dir einen Fun-Fact zu Viez erzählen 🍎: ",
                     "<%=@rand_fact.body%>"]
             },
+
     } // end conversation object
     chatWindow.talk(convo)
 </script>

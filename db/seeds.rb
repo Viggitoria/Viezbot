@@ -11,7 +11,7 @@ Question.create([
                   { body: 'Was ist Eis-Viez?' },
                   { body: 'Was ist die Viezbruderschaft?' },
                   { body: 'Wie wird Viez in der Moselregion traditionell serviert?' },
-                  { body: 'Wo wurde das Wort "Viez" zum ersten Mal verschriftlicht?' },
+                  { body: 'Wo wurde das Wort "Viez" am wahrscheinlichsten zum ersten Mal verschriftlicht?' },
                   { body: 'Bis zu wie viele verschiedene Tier- und Pflanzenarten beherbergen Streuobstwiesen?' },
                   { body: 'Wo liegt auch heute noch das Zentrum des Streuobstanbaus zwischen Mosel und Saar?' },
                   { body: 'Wann wurde das Wort Viez zum ersten Mal verschriflicht und somit nachweisbar?' },
@@ -65,7 +65,7 @@ Answer.create([
                 # Answers to question 8
                 { body: 'Als Eintrag von Helena Demuth im Poesiealbum von Jenny Marx unter dem ' \
                         'Punkt "Lieblingsgetränk".', correct?: false, question_id: 8 },
-                { body: 'Auf Getränkerechnungen aus dem Jahr 1817.', correct?: false, question_id: 8 },
+                { body: 'Auf Getränkerechnungen aus dem 19. Jahrhundert.', correct?: false, question_id: 8 },
                 { body: 'Im "Et Lied vom Viez" von Philipp Laven.',
                   correct?: true, question_id: 8 },
                 # Answers to question 9
@@ -83,7 +83,7 @@ Answer.create([
                 # Answers to question 12
                 { body: 'VICE VINUM.', correct?: false, question_id: 12 },
                 { body: 'FAEX.', correct?: true, question_id: 12 },
-                { body: 'VINUM FAECATUM.', correct?: false, question_id: 12 },
+                { body: 'VINUM FELICEM.', correct?: false, question_id: 12 },
                 # Ansers to question 13
                 { body: 'Er leitet sich von Porzellan, kurz "Porz ab.', correct?: false, question_id: 13 },
                 { body: 'Er kommt vom lateinischen Begriff "portio", was soviel wie „abgemessener Teil, Anteil" bedeutet. ', correct?: true, question_id: 13 },

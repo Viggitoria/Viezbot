@@ -20,7 +20,7 @@ function Bubbles(container, self, options) {
     // 		constructor name during open session.
 
     // local storage for recalling conversations upon restart
-    var localStorageCheck = function() {
+    var localStorageCheck = function () {
         var test = "chat-bubble-storage-test"
         try {
             localStorage.setItem(test, test)
@@ -41,7 +41,7 @@ function Bubbles(container, self, options) {
         []
 
     // prepare next save point
-    interactionsSave = function(say, reply) {
+    interactionsSave = function (say, reply) {
         if (!localStorageAvailable) return
         // limit number of saves
         if (interactionsHistory.length > recallInteractions)
@@ -60,11 +60,11 @@ function Bubbles(container, self, options) {
             return
 
         // save to memory
-        interactionsHistory.push({ say: say, reply: reply })
+        interactionsHistory.push({say: say, reply: reply})
     }
 
     // commit save to localStorage
-    interactionsSaveCommit = function() {
+    interactionsSaveCommit = function () {
         if (!localStorageAvailable) return
         localStorage.setItem(interactionsLS, JSON.stringify(interactionsHistory))
     }
@@ -76,13 +76,13 @@ function Bubbles(container, self, options) {
     container.appendChild(bubbleWrap)
 
     // install user input textfield
-    this.typeInput = function(callbackFn) {
+    this.typeInput = function (callbackFn) {
         var inputWrap = document.createElement("div")
         inputWrap.className = "input-wrap"
         var inputText = document.createElement("textarea")
         inputText.setAttribute("placeholder", "Hier Text eingeben ... ")
         inputWrap.appendChild(inputText)
-        inputText.addEventListener("keypress", function(e) {
+        inputText.addEventListener("keypress", function (e) {
             // register user input
             if (e.key === 'Enter') {
                 e.preventDefault()
@@ -95,7 +95,8 @@ function Bubbles(container, self, options) {
                     : false
                 addBubble(
                     '<span class="bubble-button bubble-pick">' + this.value + "</span>",
-                    function() {},
+                    function () {
+                    },
                     "reply reply-freeform"
                 )
                 // callback
@@ -126,7 +127,7 @@ function Bubbles(container, self, options) {
     bubbleWrap.appendChild(bubbleTyping)
 
     // accept JSON & create bubbles
-    this.talk = function(convo, here) {
+    this.talk = function (convo, here) {
         // all further .talk() calls will append the conversation with additional blocks defined in convo parameter
         _convo = Object.assign(_convo, convo) // POLYFILL REQUIRED FOR OLDER BROWSERS
 
@@ -135,7 +136,7 @@ function Bubbles(container, self, options) {
     }
 
     var iceBreaker = false // this variable holds answer to whether this is the initative bot interaction or not
-    this.reply = function(turn) {
+    this.reply = function (turn) {
         iceBreaker = typeof turn === "undefined"
         turn = !iceBreaker ? turn : _convo.ice
         questionsHTML = ""
@@ -143,7 +144,7 @@ function Bubbles(container, self, options) {
         if (turn.reply !== undefined) {
             turn.reply.reverse()
             for (var i = 0; i < turn.reply.length; i++) {
-                ;(function(el, count) {
+                ;(function (el, count) {
                     questionsHTML +=
                         '<span class="bubble-button" style="animation-delay: ' +
                         animationTime / 2 * count +
@@ -162,27 +163,32 @@ function Bubbles(container, self, options) {
                 })(turn.reply[i], i)
             }
         }
-        orderBubbles(turn.says, function() {
+        orderBubbles(turn.says, function () {
             bubbleTyping.classList.remove("imagine")
             questionsHTML !== ""
-                ? addBubble(questionsHTML, function() {}, "reply")
+                ? addBubble(questionsHTML, function () {
+                }, "reply")
                 : bubbleTyping.classList.add("imagine")
         })
     }
     // navigate "answers"
-    this.answer = function(key, content, bool) {
-        if(key.includes('chapter') || key === 'award')  {
+    this.answer = function (key, content, bool) {
+        if (key.includes('chapter') || key === 'award') {
             var new_key = count_right_answers(bool) // evaluates the answers
             if (new_key !== 'award') {
                 key = new_key
             }
         }
-        var func = function(key, content) {
+        var func = function (key, content) {
             typeof window[key] === "function" ? window[key](content) : false
         }
         _convo[key] !== undefined
             ? (this.reply(_convo[key]), (standingAnswer = key))
-            : (typeof responseCallbackFn === 'function' ? responseCallbackFn({input: key,convo: _convo,standingAnswer: standingAnswer}, key) : func(key, content))
+            : (typeof responseCallbackFn === 'function' ? responseCallbackFn({
+                input: key,
+                convo: _convo,
+                standingAnswer: standingAnswer
+            }, key) : func(key, content))
 
         // add re-generated user picks to the history stack
         if (_convo[key] !== undefined && content !== undefined) {
@@ -194,17 +200,17 @@ function Bubbles(container, self, options) {
     }
 
     // api for typing bubble
-    this.think = function() {
+    this.think = function () {
         bubbleTyping.classList.remove("imagine")
-        this.stop = function() {
+        this.stop = function () {
             bubbleTyping.classList.add("imagine")
         }
     }
 
     // "type" each message within the group
-    var orderBubbles = function(q, callback) {
-        var start = function() {
-            setTimeout(function() {
+    var orderBubbles = function (q, callback) {
+        var start = function () {
+            setTimeout(function () {
                 callback()
             }, animationTime)
         }
@@ -214,8 +220,8 @@ function Bubbles(container, self, options) {
             nextCallback >= position;
             nextCallback--
         ) {
-            ;(function(callback, index) {
-                start = function() {
+            ;(function (callback, index) {
+                start = function () {
                     addBubble(q[index], callback)
                 }
             })(start, nextCallback)
@@ -224,7 +230,7 @@ function Bubbles(container, self, options) {
     }
     // create a bubble
     var bubbleQueue = false
-    var addBubble = function(say, posted, reply, live) {
+    var addBubble = function (say, posted, reply, live) {
         reply = typeof reply !== "undefined" ? reply : ""
         live = typeof live !== "undefined" ? live : true // bubbles that are not "live" are not animated and displayed differently
         var animationTime = live ? this.animationTime : 0
@@ -241,15 +247,15 @@ function Bubbles(container, self, options) {
         if (reply !== "") {
             var bubbleButtons = bubbleContent.querySelectorAll(".bubble-button")
             for (var z = 0; z < bubbleButtons.length; z++) {
-                ;(function(el) {
+                ;(function (el) {
                     if (!el.parentNode.parentNode.classList.contains("reply-freeform"))
                         el.style.width = el.offsetWidth - sidePadding * 2 + widerBy + "px"
                 })(bubbleButtons[z])
             }
-            bubble.addEventListener("click", function(e) {
+            bubble.addEventListener("click", function (e) {
                 if (e.target.classList.contains('bubble-button')) {
                     for (var i = 0; i < bubbleButtons.length; i++) {
-                        ;(function(el) {
+                        ;(function (el) {
                             el.style.width = 0 + "px"
                             el.classList.contains("bubble-pick") ? (el.style.width = "") : false
                             el.removeAttribute("onclick")
@@ -266,14 +272,14 @@ function Bubbles(container, self, options) {
         if (say.length * typeSpeed > animationTime && reply == "") {
             wait += typeSpeed * say.length
             wait < minTypingWait ? (wait = minTypingWait) : false
-            setTimeout(function() {
+            setTimeout(function () {
                 bubbleTyping.classList.remove("imagine")
             }, animationTime)
         }
-        live && setTimeout(function() {
+        live && setTimeout(function () {
             bubbleTyping.classList.add("imagine")
         }, wait - animationTime * 2)
-        bubbleQueue = setTimeout(function() {
+        bubbleQueue = setTimeout(function () {
             bubble.classList.remove("imagine")
             var bubbleWidthCalc = bubbleContent.offsetWidth + widerBy + "px"
             bubble.style.width = reply == "" ? bubbleWidthCalc : ""
@@ -291,10 +297,10 @@ function Bubbles(container, self, options) {
             containerHeight = container.offsetHeight
             scrollDifference = bubbleWrap.scrollHeight - bubbleWrap.scrollTop
             scrollHop = scrollDifference / 200
-            var scrollBubbles = function() {
+            var scrollBubbles = function () {
                 for (var i = 1; i <= scrollDifference / scrollHop; i++) {
-                    ;(function() {
-                        setTimeout(function() {
+                    ;(function () {
+                        setTimeout(function () {
                             bubbleWrap.scrollHeight - bubbleWrap.scrollTop > containerHeight
                                 ? (bubbleWrap.scrollTop = bubbleWrap.scrollTop + scrollHop)
                                 : false
@@ -310,30 +316,51 @@ function Bubbles(container, self, options) {
     for (var i = 0; i < interactionsHistory.length; i++) {
         addBubble(
             interactionsHistory[i].say,
-            function() {},
+            function () {
+            },
             interactionsHistory[i].reply,
             false
         )
     }
     var count = 0
-    var count_right_answers = function (bool){
-        if (bool === "true"){
+    var count_right_answers = function (bool) {
+        if (bool === "true") {
             correct_answers += 1
         }
         count += 1
-        if(count === 10){
+        if (count === 10) {
             if (correct_answers >= 9)
                 return 'award1'
-            else if (correct_answers >= 7){
+            else if (correct_answers >= 7) {
                 return 'award2'
-            }
-            else if (correct_answers >= 6){
+            } else if (correct_answers >= 6) {
                 return 'award3'
-            }
-            else if (correct_answers <= 5){
+            } else if (correct_answers <= 5) {
                 return 'award4'
             }
         }
         return 'award'
     }
 }
+
+//  //var print_right_answers = function (bool){
+//      if (bool == "true"){
+//          correct_answers +=1
+//      }
+//  } count +=1
+//   (bubble.Content.innerHTML = say) {
+//      text = "X"
+//      text.replace(string("correct_answers"))
+//      else
+//          return
+//  }
+//
+//
+//  bubble.Content.innerHTML = say; {
+//      text = 'X'
+//      tex.replace('correct_answers')
+//  }
+//
+//
+//
+//

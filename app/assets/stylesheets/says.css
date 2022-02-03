@@ -2,7 +2,7 @@
 .bubble,
 .bubble-typing {
     color: #F7F7F7;
-    background: rgb(235, 125, 90);
+    background: #F4623A;
     padding: 8px 16px;
     border-radius: 5px 15px 15px 15px;
     font-family: Roboto, sans-serif;
@@ -40,10 +40,10 @@
 
 /* style media that's inside bubbles */
 .bubble .bubble-content img {
-    width: calc(100% + 32px);
+    width: auto;
     margin: -8px -16px;
-    overflow: hidden;
     display: block;
+    overflow: hidden;
     border-radius: 5px 15px 15px 15px;
 }
 
