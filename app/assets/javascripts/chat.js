@@ -328,7 +328,7 @@ function Bubbles(container, self, options) {
             correct_answers += 1
         }
         count += 1
-        if (count === 10) {
+        if (count === 11) {
             if (correct_answers >= 9)
                 return 'award1'
             else if (correct_answers >= 7) {
