@@ -1,8 +1,11 @@
 /* setup container styles */
 .bubble-container {
-    background-image: url("background-img-1.png");
-    height: 520px;
-    max-width: 750px;
+    background-image: url("background-img-1-final.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+    height: 1080px;
+    max-width: 1080px;
     width: 100%;
     margin: 0 auto;
     overflow: hidden;

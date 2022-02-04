@@ -53,6 +53,7 @@
 .bubble.history .bubble-content .bubble-button,
 .bubble.history .bubble-content .bubble-button:hover {
     transition: all 0ms !important;
+    float: left;
 }
 .bubble.history {
     opacity: .25;
