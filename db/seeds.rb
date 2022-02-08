@@ -59,7 +59,7 @@ Answer.create([
                 # Answers to question 6
                 { body: 'Ein im 15. Jhd. in Trier gegründeter christlicher Mönchsorden, ' \
                         'der bis heute  Viez auf traditionelle Weise herstellt.', correct?: false, question_id: 6 },
-                { body: 'Ein in Trier ansässiger Vereien, der sich dem Erhalt und der Anerkennung ' \
+                { body: 'Ein in Trier ansässiger Verein, der sich dem Erhalt und der Anerkennung ' \
                         'des Viez als Kulturgut  widmet.', correct?: true, question_id: 6 },
                 { body: 'Eine Gemeinschaft von Studenten, die sich regelmäßig zum Viez-Trinken in den ' \
                         'Trierer Kneipen trifft.', correct?: false, question_id: 6 },

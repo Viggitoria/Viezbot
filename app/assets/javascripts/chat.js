@@ -11,10 +11,8 @@ function Bubbles(container, self, options) {
     inputCallbackFn = options.inputCallbackFn || true // should we display an input field?
     responseCallbackFn = options.responseCallbackFn || false // is there a callback function for when a user clicks on a bubble button
 
-    var correct_answers = 0
+    var correct_answers = 0 // saves the count of right quiz answers
     var standingAnswer = "ice" // remember where to restart convo if interrupted
-    // saves how many answers were correctly answered
-
     var _convo = {} // local memory for conversation JSON object
     //--> NOTE that this object is only assigned once, per session and does not change for this
     // 		constructor name during open session.
@@ -135,6 +133,10 @@ function Bubbles(container, self, options) {
         here ? (standingAnswer = here) : false
     }
 
+    this.return_quiz_result = function (){
+        return correct_answers
+    }
+
     var iceBreaker = false // this variable holds answer to whether this is the initative bot interaction or not
     this.reply = function (turn) {
         iceBreaker = typeof turn === "undefined"
@@ -177,6 +179,7 @@ function Bubbles(container, self, options) {
             var new_key = count_right_answers(bool) // evaluates the answers
             if (new_key !== 'award') {
                 key = new_key
+                evaluate_quiz(key)
             }
         }
         var func = function (key, content) {
@@ -324,6 +327,7 @@ function Bubbles(container, self, options) {
     }
     var count = 0
     var count_right_answers = function (bool) {
+        console.log(bool)
         if (bool === "true") {
             correct_answers += 1
         }
