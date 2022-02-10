@@ -36,9 +36,9 @@
             }
 
             // do this if answer found
-            var match = function(key) {
+            var match = function(key, bool) {
                 setTimeout(function() {
-                    chatWindow.talk(convo, key) // restart current convo from point found in the answer
+                    chatWindow.talk(convo, key, bool) // restart current convo from point found in the answer
                 }, 600)
             }
 
@@ -49,12 +49,17 @@
 
             // search function
             var found = false
+            var bool = undefined
             o.convo[o.standingAnswer].reply.forEach(function(e, i) {
-                strip(e.question).includes(strip(o.input)) && o.input.length > 0
-                  ? (found = e.answer)
-                  : found ? null : (found = false)
+                if (strip(e.question).includes(strip(o.input)) && o.input.length > 0){
+                    found = e.answer
+                    bool = e.correct
+                }
+                else if (found === null){
+                    found = false
+                }
             })
-            found ? match(found) : miss()
+            found ? match(found, bool) : miss()
         }
 
     }) // done setting up chat-bubble

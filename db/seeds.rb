@@ -90,7 +90,7 @@ Answer.create([
                 { body: 'FAEX.', correct?: true, question_id: 12 },
                 { body: 'VINUM FELICEM.', correct?: false, question_id: 12 },
                 # Ansers to question 13
-                { body: 'Er leitet sich von Porzellan, kurz "Porz ab.', correct?: false, question_id: 13 },
+                { body: 'Er leitet sich von Porzellan, kurz "Porz" ab.', correct?: false, question_id: 13 },
                 { body: 'Er kommt vom lateinischen Begriff "portio", was soviel wie „abgemessener Teil, Anteil" bedeutet. ', correct?: true, question_id: 13 },
                 { body: 'Er lässt sich vom lateinischen Begriff "portare", was tragen bedeutet, ableiten. ', correct?: false, question_id: 13 },
                 # Answers to question 14

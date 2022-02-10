@@ -125,12 +125,14 @@ function Bubbles(container, self, options) {
     bubbleWrap.appendChild(bubbleTyping)
 
     // accept JSON & create bubbles
-    this.talk = function (convo, here) {
+    this.talk = function (convo, here, bool) {
         // all further .talk() calls will append the conversation with additional blocks defined in convo parameter
         _convo = Object.assign(_convo, convo) // POLYFILL REQUIRED FOR OLDER BROWSERS
-
         this.reply(_convo[here])
         here ? (standingAnswer = here) : false
+        if (bool !== undefined){
+            count_right_answers(bool)
+        }
     }
 
     this.return_quiz_result = function (){
@@ -174,13 +176,10 @@ function Bubbles(container, self, options) {
         })
     }
     // navigate "answers"
+
     this.answer = function (key, content, bool) {
         if (key.includes('chapter') || key === 'award') {
-            var new_key = count_right_answers(bool) // evaluates the answers
-            if (new_key !== 'award') {
-                key = new_key
-                evaluate_quiz(key)
-            }
+            count_right_answers(bool) // evaluates the answers
         }
         var func = function (key, content) {
             typeof window[key] === "function" ? window[key](content) : false
@@ -328,22 +327,21 @@ function Bubbles(container, self, options) {
     var count = 0
     var count_right_answers = function (bool) {
         console.log(bool)
-        if (bool === "true") {
+        if (bool === true || bool === "true") {
             correct_answers += 1
         }
         count += 1
         if (count === 11) {
             if (correct_answers >= 9)
-                return 'award1'
+                evaluate_quiz('award1')
             else if (correct_answers >= 7) {
-                return 'award2'
+                evaluate_quiz('award1')
             } else if (correct_answers >= 6) {
-                return 'award3'
+                evaluate_quiz('award1')
             } else if (correct_answers <= 5) {
-                return 'award4'
+                evaluate_quiz('award1')
             }
         }
-        return 'award'
     }
 }
 
