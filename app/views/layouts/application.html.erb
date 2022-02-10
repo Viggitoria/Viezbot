@@ -13,18 +13,145 @@
   <%= stylesheet_link_tag "input" %>
   <%= javascript_importmap_tags %>
 
+
+  <a class="button" href="https://digitalviez.github.io/">Hier geht's zurück zur Homepage</a>
+  <a class="anotherbutton" href="https://digitalviez.github.io/">Hier geht's zum Impressum</a>
+
+
+
   <style>
       body {
           background: #EDB78C;
       }
       .bubble-container {
+          margin: 0 auto;
           height: 100vh;
+      }
+
+      .anotherbutton{
+          background: #000000;
+          position:relative;
+          float: left;
+          left: 2.5%;
+          padding: 1% 1% 1% 1%;
+          border-radius: 15px 15px 15px 15px;
+          font-family: Roboto, sans-serif;
+          margin-top: 2%;
+          border: 1px solid rgba(44, 44, 44, 0.67);
+          box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+          box-sizing: border-box;
+          color: #FFFFFF;
+          cursor: pointer;
+          font-size: 16px;
+          font-weight: 800;
+          line-height: 16px;
+          min-height: 40px;
+          text-align: left;
+          outline: 0;
+          text-rendering: auto;
+          text-transform: none;
+          user-select: none;
+          -webkit-user-select: none;
+          touch-action: manipulation;
+          vertical-align: middle;
+          text-decoration: none;
+
+      }
+
+      .anotherbutton span {
+          cursor: pointer;
+          display: inline-block;
+          position: relative;
+          transition: 0.5s;
+      }
+
+      .anotherbutton span:after {
+          content: '\00bb';
+          position: center;
+          opacity: 1;
+          top: 0;
+          right: -20px;
+          transition: 0.5s;
+      }
+      .anotherbutton:hover {
+          background-color: rgba(44, 44, 44, 0.67);
+          background-position: 0 0;
+          color: #FFFFFF;
+      }
+      .anotherbutton:hover span {
+          padding-right: 25px;
+      }
+      .anotherbutton:hover span:after {
+          opacity: 0.5;
+          right: inherit;
       }
       .bubble-container .input-wrap textarea {
           margin: 0;
           width: calc(100% - 30px);
       }
+
+      .button {
+          background: #B00100;
+          float: right;
+          position: relative;
+          right: 2.5%;
+          padding: 1% 1% 1% 1%;
+          margin-top: 2%;
+          border: 1px solid rgba(44, 44, 44, 0.67);
+          border-radius: 15px 15px 15px 15px;
+          box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+          box-sizing: border-box;
+          color: #FFFFFF;
+          cursor: pointer;
+          font-family: Roboto,sans-serif;
+          font-size: 16px;
+          font-weight: 800;
+          line-height: 16px;
+          min-height: 40px;
+          outline: 0;
+          text-align: center;
+          text-rendering: geometricprecision;
+          text-transform: none;
+          user-select: none;
+          -webkit-user-select: none;
+          touch-action: manipulation;
+          vertical-align: middle;
+          text-decoration: none;
+      }
+      .button span {
+          cursor: pointer;
+          display: inline-block;
+          position: relative;
+          transition: 0.5s;
+      }
+
+      .button span:after {
+          content: '\00bb';
+          position: center;
+          opacity: 1;
+          top: 0;
+          right: -20px;
+          transition: 0.5s;
+      }
+      .button:hover {
+          background-color: rgba(44, 44, 44, 0.67);
+          background-position: 0 0;
+          color: #FFFFFF;
+      }
+      .button:hover span {
+          padding-right: 25px;
+      }
+      .button:hover span:after {
+          opacity: 0.5;
+          right: inherit;
+      }
+      .bubble-container .input-wrap textarea {
+          margin: 0;
+          width: calc(100% - 30px);
+      }
+
   </style>
+
 
 </head>
 <body>

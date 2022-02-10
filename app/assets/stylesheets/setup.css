@@ -22,14 +22,16 @@
     -webkit-overflow-scrolling: touch;
     -webkit-transform: translate3d(0, 0, 0);
 }
+
+
 /* optional page styles */
-h1 {
-    text-align: center;
+.head {
     font-weight: 300;
     font-size: 4em;
     margin: .5em auto 0.15em;
 }
-body {
+
+.body {
     font-family: Roboto, sans-serif;
     margin: 0;
 }

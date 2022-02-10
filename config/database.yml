@@ -82,5 +82,3 @@ test:
 production:
   <<: *default
   database: Viezbot_production
-  username: Viezbot
-  password: <%= ENV["VIEZBOT_DATABASE_PASSWORD"] %>
