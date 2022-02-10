@@ -347,24 +347,3 @@ function Bubbles(container, self, options) {
     }
 }
 
-//  //var print_right_answers = function (bool){
-//      if (bool == "true"){
-//          correct_answers +=1
-//      }
-//  } count +=1
-//   (bubble.Content.innerHTML = say) {
-//      text = "X"
-//      text.replace(string("correct_answers"))
-//      else
-//          return
-//  }
-//
-//
-//  bubble.Content.innerHTML = say; {
-//      text = 'X'
-//      tex.replace('correct_answers')
-//  }
-//
-//
-//
-//

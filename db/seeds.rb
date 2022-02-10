@@ -11,13 +11,13 @@ Question.create([
                   { body: 'Was ist Eis-Viez?' },
                   { body: 'Was ist die Viezbruderschaft?' },
                   { body: 'Wie wird Viez in der Moselregion traditionell serviert?' },
-                  { body: 'Wo wurde das Wort "Viez" am wahrscheinlichsten zum ersten Mal verschriftlicht?' },
+                  { body: 'Wo wurde das Wort "Viez" nach aktuellem Wissensstand zum ersten Mal verschriftlicht?' },
                   { body: 'Bis zu wie viele verschiedene Tier- und Pflanzenarten beherbergen Streuobstwiesen?' },
                   { body: 'Wo liegt auch heute noch das Zentrum des Streuobstanbaus zwischen Mosel und Saar?' },
                   { body: 'Wann wurde das Wort Viez zum ersten Mal verschriflicht und somit nachweisbar?' },
                   { body: 'Aus welchem lateinischen Begriff lässt sich das Wort Viez ableiten?' },
                   { body: 'Woher kommt der Begriff Porz?' },
-                  { body: 'Wie viel Kalorien enthalten 250ml Viez im Durchschnitt?' },
+                  { body: 'Wie viele Kalorien enthalten 250ml Viez im Durchschnitt?' },
                   { body: 'Aus welchem Obst kann Viez hergestellt werden?' },
                   { body: 'Wie wird Viez auf trierisch bezeichnet, wenn er besonders gut ist?' },
                   { body: 'Am 18. April 2012 kam die Viezporz vor Gericht. Worum wurde gestritten?' },
@@ -102,9 +102,9 @@ Answer.create([
                 { body: 'Äpfel und Quitten.', correct?: false, question_id: 15 },
                 { body: 'Äpfel und Birnen.', correct?: true, question_id: 15 },
                 # Answers to question 16
-                { body: 'HAMMER.', correct?: false, question_id: 16 },
-                { body: 'GAMMER.', correct?: false, question_id: 16 },
-                { body: 'SAUWER.', correct?: true, question_id: 16 },
+                { body: 'hammer', correct?: false, question_id: 16 },
+                { body: 'gammer', correct?: false, question_id: 16 },
+                { body: 'sauwer', correct?: true, question_id: 16 },
                 # Answers to question 17
                 { body: 'Um die fehlende Füllmarkierung.', correct?: false, question_id: 17 },
                 { body: 'Um die Bezeichnung als Original.', correct?: true, question_id: 17 },
@@ -115,22 +115,22 @@ Answer.create([
                 { body: '200 km.', correct?: false, question_id: 18 },
                 # Answers to question 19
                 { body: 'Am ersten Samstag im Oktober.', correct?: true, question_id: 19 },
-                { body: 'Am letzten Sonntag im November.', correct?: false, question_id: 19 },
+                { body: 'Am letzten Samstag im Oktober.', correct?: false, question_id: 19 },
                 { body: 'Am ersten Samstag im November.', correct?: false, question_id: 19 },
                 # Answers to question 20
-                { body: 'Trier dein Viez.', correct?: false, question_id: 20 },
-                { body: 'Porzenlied.', correct?: false, question_id: 20 },
-                { body: 'Viez auf Hawaii.', correct?: true, question_id: 20 }
+                { body: 'Trier dein Viez', correct?: false, question_id: 20 },
+                { body: 'Porzenlied', correct?: false, question_id: 20 },
+                { body: 'Viez auf Hawaii', correct?: true, question_id: 20 }
               ])
 
 # Fun Facts around Viez that are presented to the User randomly if he does not want play the quiz
 FunFact.create([
                  { body: 'Wusstest Du, dass die gängige Abkürzung für Viez mit Cola Covie lautet?' },
-                 { body: 'Wusstest Du, dass sich unter den original Viezporzen der Aufdruck „GPS“ für Gebrüder '\
+                 { body: 'Wusstest Du, dass sich unter den regional hergestellten Viezporzen der Aufdruck „GPS“ für Gebrüder '\
                           'Plein Speicher befindet?' },
                  { body: 'Wusstest Du, dass in vielen Kneipen Viez gezapft wird? Es bedarf dafür jedoch eigens '\
-                         'hergestellte Schläuche, da die Säure des Viez die handelsüblichen auflöst.' },
-                 { body: 'Wusstest Du, dass nicht überall der Viez aus einem Porz getrunken wird? Im Saarland reicht '\
+                         'hergestellter Schläuche, da die Säure des Viez die handelsüblichen auflöst.' },
+                 { body: 'Wusstest Du, dass nicht überall der Viez aus einer Porz getrunken wird? Im Saarland reicht '\
                           'man das Getränk in einem Glaskrug.' },
                  { body: 'Wusstest Du, dass man ca. 1,3kg Äpfel für einen Liter Viez benötigt?' },
                  { body: 'Wusstest Du, dass es im Gegensatz zu vielen anderen traditionellen Getränken bei Viez keine '\
