@@ -11,6 +11,14 @@
     overflow: hidden;
     position: relative;
 }
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="bubble-container"] {
+        height: 80%;
+        max-width: 90%;
+        width: 100%;
+    }
+}
 .bubble-wrap {
     position: absolute;
     top: 0;
