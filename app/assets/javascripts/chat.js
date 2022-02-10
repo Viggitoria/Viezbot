@@ -335,11 +335,11 @@ function Bubbles(container, self, options) {
             if (correct_answers >= 9)
                 evaluate_quiz('award1')
             else if (correct_answers >= 7) {
-                evaluate_quiz('award1')
+                evaluate_quiz('award2')
             } else if (correct_answers >= 6) {
-                evaluate_quiz('award1')
+                evaluate_quiz('award3')
             } else if (correct_answers <= 5) {
-                evaluate_quiz('award1')
+                evaluate_quiz('award4')
             }
         }
     }
