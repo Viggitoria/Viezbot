@@ -125,14 +125,19 @@ function Bubbles(container, self, options) {
     bubbleWrap.appendChild(bubbleTyping)
 
     // accept JSON & create bubbles
-    this.talk = function (convo, here, bool) {
+    this.talk = function (convo, here, bool = undefined) {
+        var result = ""
         // all further .talk() calls will append the conversation with additional blocks defined in convo parameter
+        if (bool !== undefined){
+            result = count_right_answers(bool)
+        }
+        if (result !== ""){
+            evaluate_quiz(result)
+            return
+        }
         _convo = Object.assign(_convo, convo) // POLYFILL REQUIRED FOR OLDER BROWSERS
         this.reply(_convo[here])
         here ? (standingAnswer = here) : false
-        if (bool !== undefined){
-            count_right_answers(bool)
-        }
     }
 
     this.return_quiz_result = function (){
@@ -179,7 +184,10 @@ function Bubbles(container, self, options) {
 
     this.answer = function (key, content, bool) {
         if (key.includes('chapter') || key === 'award') {
-            count_right_answers(bool) // evaluates the answers
+            result = count_right_answers(bool) // evaluates the answers
+            if (result !== ""){
+                evaluate_quiz(result)
+            }
         }
         var func = function (key, content) {
             typeof window[key] === "function" ? window[key](content) : false
@@ -325,6 +333,7 @@ function Bubbles(container, self, options) {
         )
     }
     var count = 0
+    var result = ""
     var count_right_answers = function (bool) {
         console.log(bool)
         if (bool === true || bool === "true") {
@@ -332,16 +341,18 @@ function Bubbles(container, self, options) {
         }
         count += 1
         if (count === 11) {
-            if (correct_answers >= 9)
-                evaluate_quiz('award1')
+            if (correct_answers >= 9){
+                result = "award1"
+            }
             else if (correct_answers >= 7) {
-                evaluate_quiz('award2')
+                result = "award2"
             } else if (correct_answers >= 6) {
-                evaluate_quiz('award3')
+                result = "award3"
             } else if (correct_answers <= 5) {
-                evaluate_quiz('award4')
+                result = "award4"
             }
         }
+        return result
     }
 }
 
