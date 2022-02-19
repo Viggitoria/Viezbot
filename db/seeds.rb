@@ -14,7 +14,7 @@ Question.create([
                   { body: 'Wo wurde das Wort "Viez" nach aktuellem Wissensstand zum ersten Mal verschriftlicht?' },
                   { body: 'Bis zu wie viele verschiedene Tier- und Pflanzenarten beherbergen Streuobstwiesen?' },
                   { body: 'Wo liegt auch heute noch das Zentrum des Streuobstanbaus zwischen Mosel und Saar?' },
-                  { body: 'Wann wurde das Wort Viez zum ersten Mal verschriflicht und somit nachweisbar?' },
+                  { body: 'Wann wurde das Wort Viez zum ersten Mal verschriftlicht und somit nachweisbar?' },
                   { body: 'Aus welchem lateinischen Begriff lässt sich das Wort Viez ableiten?' },
                   { body: 'Woher kommt der Begriff Porz?' },
                   { body: 'Wie viele Kalorien enthalten 250ml Viez im Durchschnitt?' },
