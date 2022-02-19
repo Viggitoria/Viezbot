@@ -12,6 +12,7 @@ function Bubbles(container, self, options) {
     responseCallbackFn = options.responseCallbackFn || false // is there a callback function for when a user clicks on a bubble button
 
     var correct_answers = 0 // saves the count of right quiz answers
+    var count = 0
     var standingAnswer = "ice" // remember where to restart convo if interrupted
     var _convo = {} // local memory for conversation JSON object
     //--> NOTE that this object is only assigned once, per session and does not change for this
@@ -126,8 +127,8 @@ function Bubbles(container, self, options) {
 
     // accept JSON & create bubbles
     this.talk = function (convo, here, bool = undefined) {
-        var result = ""
         // all further .talk() calls will append the conversation with additional blocks defined in convo parameter
+        result = ""
         if (bool !== undefined){
             result = count_right_answers(bool)
         }
@@ -185,7 +186,7 @@ function Bubbles(container, self, options) {
     this.answer = function (key, content, bool) {
         if (key.includes('chapter') || key === 'award') {
             result = count_right_answers(bool) // evaluates the answers
-            if (result !== ""){
+            if (result.includes('award')){
                 evaluate_quiz(result)
             }
         }
@@ -332,15 +333,14 @@ function Bubbles(container, self, options) {
             false
         )
     }
-    var count = 0
-    var result = ""
     var count_right_answers = function (bool) {
-        console.log(bool)
         if (bool === true || bool === "true") {
             correct_answers += 1
         }
-        count += 1
-        if (count === 11) {
+        if (bool !== undefined && bool !== "undefined"){
+            count += 1
+        }
+        if (count === 10) {
             if (correct_answers >= 9){
                 result = "award1"
             }
