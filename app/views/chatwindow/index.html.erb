@@ -1,8 +1,6 @@
 <!-- container element for chat window -->
 <div id="chat"></div>
 
-
-
 <!-- import the JavaScript file -->
 <%= javascript_include_tag('chat') %>
 
@@ -295,16 +293,16 @@
             },
             no_quiz: {
                 says: ["Schade, aber stattdessen kann ich dir einen Fun-Fact zu Viez erzählen 🍎: ",
-                      "<%=@rand_fact.body%>"]
+                      "<%= load_random_fact %>",
+                ],
             },
 
     } // end conversation object
 
     chatWindow.talk(convo)
 
-
     var evaluate_quiz = function(key) {
-        evaluation = {
+        var evaluation = {
             award1: {
                 says: [
                     "Wow! Du bist wirklich ein Viezexperte! 🥇",
