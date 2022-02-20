@@ -32,6 +32,19 @@
                   "i-dont-get-it"
                 )
             }
+            var miss2 = function() {
+                chatWindow.talk(
+                    {
+                        "i-dont-get-it2": {
+                            says: [
+                                "Das hab ich leider nicht verstanden 😕. Kannst du das nochmal wiederholen? Oder versuch doch mal was anderes."
+                            ],
+                            reply: o.convo[o.standingAnswer].reply
+                        }
+                    },
+                    "i-dont-get-it2"
+                )
+            }
 
             // do this if answer found
             var match = function(key, bool) {
@@ -45,19 +58,48 @@
                 return text.toLowerCase().replace(/[\s.,\/#!$%^&*;:{}=\-_'"`~()]/g, "")
             }
 
+            var search_for_keywords = function (input){
+                let stripped = strip(o.input)
+                if (stripped.includes("kelter") || stripped.includes("obstpresse")){
+                    return "kelter"
+                }
+                else if (stripped.includes("keks") || stripped.includes("cookie")){
+                    return "keks"
+                }
+                else if (stripped.includes("trier")){
+                    return "trier"
+                }
+                else if (stripped.includes("wie") && stripped.includes("geht")){
+                    return "wie_gehts"
+                }
+            }
+
             // search function
             var found = false
             var bool = undefined
-            o.convo[o.standingAnswer].reply.forEach(function(e, i) {
-                if (strip(e.question).includes(strip(o.input)) && o.input.length > 0){
-                    found = e.answer
-                    bool = e.correct
+            if (o.convo[o.standingAnswer].reply !== undefined) {
+                o.convo[o.standingAnswer].reply.forEach(function (e) {
+                    if (strip(e.question).includes(strip(o.input)) && o.input.length > 0) {
+                        found = e.answer
+                        bool = e.correct
+                    }
+                        // Test ab hier
+                    else if (!o.standingAnswer.includes("chapter")){
+                        found = search_for_keywords(o.input)
+                    }
+                    // Test bis hier
+                    else if (found === null) {
+                        found = false
+                    }
+                })
+                found ? match(found, bool) : miss()
+            }
+            else{
+                if (!o.standingAnswer.includes("chapter")){
+                    found = search_for_keywords(o.input)
                 }
-                else if (found === null){
-                    found = false
-                }
-            })
-            found ? match(found, bool) : miss()
+                found ? match(found, bool) : miss2()
+            }
         }
 
     }) // done setting up chat-bubble
@@ -296,6 +338,50 @@
                       "<%= load_random_fact %>",
                 ],
             },
+        kelter: {
+            says: ["Du interessierst dich also fürs Keltern?",
+                  "Unsere 3D-Kelter findest du unter diesem Link:",
+                "<a style='color:lightgoldenrodyellow' href = 'https://digitalviez.github.io/3digitalisierung.html'>Zur 3D-Kelter</a>",
+            ],
+        },
+        keks: {
+            says: ["Oh ich liebe Kekse! 🍪",
+                "Falls du ein richtig gutes Rezept für Viezkekse hast, sag Bescheid! 🤤",
+                "Vielleicht nehmen wir es dann auf dieser Seite auf!"
+            ],
+        },
+        trier: {
+            says: ["Trier ist wunderschön, nicht wahr?",
+                "Die älteste Stadt Deutschlands, habe ich gehört.",
+            ],
+        },
+        wie_gehts: {
+            says: ["Ach, ich kann nicht klagen.",
+                "Mit einem Pörzchen Viez wärs natürlich noch besser",
+                "und selbst?"
+            ],
+            reply: [
+                {
+                    question: "Super!",
+                    answer: "geht_gut"
+                },
+                {
+                    question: "Nicht so besonders...",
+                    answer: "geht_schlecht"
+                }
+            ]
+        },
+        geht_gut: {
+            says: ["Das freut mich aber!",
+            ],
+        },
+        geht_schlecht: {
+            says: ["Oh wie schade 😦",
+                  "Aber vielleicht kann dich ja ein Lied aufmuntern 🎵",
+                  "Schau mal hier:",
+                "<a style='color:lightgoldenrodyellow' href = 'https://digitalviez.github.io/museum.html#viezgeschmack'>zu den Viezliedern!</a>"
+            ],
+        },
 
     } // end conversation object
 
@@ -308,24 +394,16 @@
                     "Wow! Du bist wirklich ein Viezexperte! 🥇",
                     "Du belegst den ersten Platz mit " + chatWindow.return_quiz_result() + " von 10 richtigen Antworten. Wie wäre es jetzt mit einem leckeren Viezkuchen zur Stärkung?",
                     "Ein passendes Rezept findest du auch auf dieser Website 😉 - mer liewe de Viez off'm Desch! ",
-                    "<img src = '<%= image_url('Viezkuchen.jpg') %>' alt = 'Viezkuchen' width='400' height='300'>"
-                ],
-                reply: [
-                    {
-                        question: "<a style='color:lightgoldenrodyellow' href = 'https://digitalviez.github.io/viezfaeltigkeit.html#viezrezepte'>Zum Rezept</a>"
-                    }
+                    "<img src = '<%= image_url('Viezkuchen.jpg') %>' alt = 'Viezkuchen' width='400' height='300'>",
+                    "<a style='color:lightgoldenrodyellow' href = 'https://digitalviez.github.io/viezfaeltigkeit.html#viezrezepte'>Zum Rezept</a>"
                 ],
             },
             award2: {
                 says: [
                     "Gratuliere! Du belegst den zweiten Platz mit " + chatWindow.return_quiz_result() + " von 10 richtigen Antworten! 🥈",
                     "Möchtest du eine Vieztour planen, um herauszufinden, welcher Viez dir am besten schmeckt? " +
-                    "Dann schau doch auf unserer Karte vorbei. 😊"
-                ],
-                reply: [
-                    {
-                        question: "<a style='color:lightgoldenrodyellow' href = 'https://digitalviez.github.io/karte.html'>Zur Karte</a>"
-                    }
+                    "Dann schau doch auf unserer Karte vorbei. 😊",
+                    "<a style='color:lightgoldenrodyellow' href = 'https://digitalviez.github.io/karte.html'>Zur Karte</a>",
                 ],
             },
             award3: {
