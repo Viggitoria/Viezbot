@@ -1,7 +1,6 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Viezbot is a quiz application aiming to resemble a chat. It was developped as an web application using Ruby on Rails (https://rubyonrails.org/). The chat-bubble code of @dmitrizzle was used as a basis and modified where nessecary.
 
 Things you may want to cover:
 
