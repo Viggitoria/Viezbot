@@ -1,7 +1,7 @@
 # README
 
-Viezbot is a quiz application aiming to resemble a chat. 
-It was developped as a web application using Ruby on Rails (https://rubyonrails.org/) to ensure its platform independency. The chat-bubble code of @dmitrizzle was used as a basis and modified where nessecary. To see more information about his code check out https://github.com/dmitrizzle/chat-bubble.
+Viezbot is a quiz application aiming to resemble a chat. It's part of the Digital Viez Project by master students of Trier University in Germany.
+It was developped as a web application using Ruby on Rails (https://rubyonrails.org/) to ensure its platform independency. The chat-bubble code (https://github.com/dmitrizzle/chat-bubble) was used as a basis and modified where nessecary. 
 
 Things you may want to cover:
 
