@@ -115,7 +115,7 @@ function Bubbles(container, self, options) {
     }
     inputCallbackFn ? this.typeInput(inputCallbackFn) : false
 
-    // init typing bubble
+// init typing bubble
     var bubbleTyping = document.createElement("div")
     bubbleTyping.className = "bubble-typing imagine"
     for (dots = 0; dots < 3; dots++) {

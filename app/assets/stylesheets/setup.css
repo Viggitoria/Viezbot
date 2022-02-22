@@ -11,7 +11,7 @@
     overflow: hidden;
     position: relative;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 480px) {
     /* For mobile phones: */
     [class*="bubble-container"] {
         height: 80%;
@@ -24,22 +24,9 @@
     top: 0;
     bottom: 0;
     left: 0;
-    right: -17px;
-    padding: 10px calc(17px + 10px) 30px 10px;
+    right: 0;
+    padding: 2% 2%;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-    -webkit-transform: translate3d(0, 0, 0);
-}
-
-
-/* optional page styles */
-.head {
-    font-weight: 300;
-    font-size: 4em;
-    margin: .5em auto 0.15em;
-}
-
-.body {
-    font-family: Roboto, sans-serif;
-    margin: 0;
+    -webkit-transform: translate3d(0,0,0 );
 }
