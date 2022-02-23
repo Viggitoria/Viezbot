@@ -139,7 +139,7 @@
                     {
                         question: "<%=@question_array[0].answers.first.body%>", // label for the reply option
                         answer: "chapter_two", // key for the next conversation object
-                        correct: <%= @question_array[0].answers.first.correct?%>
+                        correct: <%= @question_array[0].answers.first.correct?%>//boolean value for correct or wrong answer
                     },
                     {
                         question: "<%=@question_array[0].answers.find(@question_array[0].answers.first.id + 1).body%>",

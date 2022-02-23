@@ -183,7 +183,6 @@ function Bubbles(container, self, options) {
     }
     // navigate "answers"
     this.answer = function (key, content, bool) {
-        console.log(key)
         if (key.includes('chapter') || key === 'award') {
             result = count_right_answers(bool) // evaluates the answers
             if (result.includes('award')){
