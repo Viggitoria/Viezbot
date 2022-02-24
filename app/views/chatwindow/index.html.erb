@@ -129,7 +129,9 @@
                     },
                 ]
             },
-
+            // quiz starts from here: chapter_one to chapter_ten
+            // no chit chat possible while in quiz mode
+            // boolean value saved in correct is needed for quiz evaluation
             chapter_one: {
                 says:   ["Super!",
                         "Dann lass uns mit der ersten Frage starten. 😉",
@@ -333,11 +335,14 @@
                     }
                 ],
             },
+          // end of quiz dialogue
             no_quiz: {
                 says: ["Schade, aber stattdessen kann ich dir einen Fun-Fact zu Viez erzählen 🍎: ",
                       "<%= load_random_fact %>",
                 ],
             },
+        // chit chat answers starting here
+        // bot reacts to key words and returns the corresponding answers
         kelter: {
             says: ["Du interessierst dich also fürs Keltern?",
                   "Unsere 3D-Kelter findest du unter diesem Link:",
@@ -357,7 +362,7 @@
         },
         wie_gehts: {
             says: ["Ach, ich kann nicht klagen.",
-                "Mit einem Pörzchen Viez wärs natürlich noch besser",
+                "Mit einem Pörzchen Viez wärs natürlich noch besser.",
                 "und selbst?"
             ],
             reply: [
@@ -382,12 +387,14 @@
                 "<a style='color:lightgoldenrodyellow' href = 'https://digitalviez.github.io/museum.html#viezgeschmack'>zu den Viezliedern!</a>"
             ],
         },
-
+      // end of chit chat answers
     } // end conversation object
 
     chatWindow.talk(convo)
 
     var evaluate_quiz = function(key) {
+        // function that returns an award text at the end of the quiz
+        // needs to be separate from the other part of the dialog as else the amount of right answers won't be displayed
         var evaluation = {
             award1: {
                 says: [
