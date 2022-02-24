@@ -14,4 +14,5 @@ or wrong answers,
 a key to map the respective answers to their corresponding questions as well as a table filled with fun facts. 
 
 
-https://user-images.githubusercontent.com/76204423/155418092-2cc547c9-8701-49b0-8fbd-d2e468ca863a.mov
+![ezgif com-gif-maker(2)](https://user-images.githubusercontent.com/76204423/155478097-298f864f-6687-4236-bff1-4681e90da5c9.gif)
+
