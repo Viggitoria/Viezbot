@@ -6,7 +6,7 @@
 Question.create([
                   { body: 'Wann wurde erstmalig ein Viezkönig gewählt?' },
                   { body: 'Kennst Du die "Viezstraße"? Wie lang geht die Viezstraßen-Saison?' },
-                  { body: 'Ist Viez bereits Teil des UNESCO Weltkulturerbes?' },
+                  { body: 'Ist Viez bereits Teil des Bundesweiten Verzeichnis des Immateriellen Kulturerbes der deutschen UNESCO-Kommission?' },
                   { body: 'Aus welchen Schritten besteht die Viez-Herstellung?' },
                   { body: 'Was ist Eis-Viez?' },
                   { body: 'Was ist die Viezbruderschaft?' },
