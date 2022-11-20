@@ -96,7 +96,7 @@ function Bubbles(container, self, options) {
                     : false
                 console.log("first ",freetext_answer_type)
                 addBubble(
-                    '<span class="bubble-button bubble-pick ' + freetext_answer_type + '">' + this.value + "</span>",
+                    '<span class="bubble-button bubble-pick">' + this.value + "</span>",
                     function () {
                     },
                     "reply reply-freeform"
