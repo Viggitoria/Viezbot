@@ -71,6 +71,7 @@
   transform: scale(0) translate3d(0px, 0px, 0px);
   padding: 0;
 }
+
 .bubble.reply:not(.bubble-picked) .bubble-content .bubble-button:hover,
 .bubble.reply .bubble-content .bubble-button.bubble-pick {
   background: #434A54;
@@ -82,7 +83,7 @@
 /* interaction recall styles */
 .bubble.history .bubble-content .bubble-button,
 .bubble.history.reply:not(.bubble-picked) .bubble-content .bubble-button:hover,
-.bubble.history.reply .bubble-content .bubble-button.bubble-pick {
+.bubble.history.reply .bubble-content .bubble-button.bubble-pick{
   background: #434A54;
   cursor: default;
 }
@@ -107,4 +108,12 @@
 }
 .bubble .bubble-content input:read-only {
   background: linear-gradient(166deg, #48121d, #0d4058 100%) !important;
+}
+
+.bubble.reply .bubble-button.bubble-pick.true-answer{
+    background: #78da54;
+}
+
+.bubble.reply .bubble-button.bubble-pick.false-answer{
+    background: #7e1d10;
 }

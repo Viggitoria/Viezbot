@@ -13,6 +13,8 @@ function Bubbles(container, self, options) {
 
     var correct_answers = 0 // saves the count of right quiz answers
     var count = 0
+    var answer_type = ""
+    var freetext_answer_type = ""
     var standingAnswer = "ice" // remember where to restart convo if interrupted
     var _convo = {} // local memory for conversation JSON object
     //--> NOTE that this object is only assigned once, per session and does not change for this
@@ -92,8 +94,9 @@ function Bubbles(container, self, options) {
                 !lastBubble.classList.contains("reply-freeform")
                     ? lastBubble.classList.add("bubble-hidden")
                     : false
+                console.log("first ",freetext_answer_type)
                 addBubble(
-                    '<span class="bubble-button bubble-pick">' + this.value + "</span>",
+                    '<span class="bubble-button bubble-pick ' + freetext_answer_type + '">' + this.value + "</span>",
                     function () {
                     },
                     "reply reply-freeform"
@@ -145,6 +148,26 @@ function Bubbles(container, self, options) {
         return correct_answers
     }
 
+      this.set_answer_type = function (string, bool){
+        if (string === "ft"){
+            if (bool === true | bool === "true"){
+                freetext_answer_type = "true-answer" // class for if a true answer was selected
+            }
+            else if (bool === false | bool === "false"){ // class for if a false answer was selected
+                freetext_answer_type = "false-answer"
+            }
+        }
+        else {
+            if (bool === true | bool === "true"){
+                answer_type = "true-answer" // class for if a true answer was selected
+            }
+            else if (bool === false | bool === "false"){ // class for if a false answer was selected
+                answer_type = "false-answer"
+            }
+        }
+          console.log(freetext_answer_type)
+    }
+
     var iceBreaker = false // this variable holds answer to whether this is the initative bot interaction or not
     this.reply = function (turn) {
         iceBreaker = typeof turn === "undefined"
@@ -153,8 +176,10 @@ function Bubbles(container, self, options) {
         if (!turn) return
         if (turn.reply !== undefined) {
             turn.reply.reverse()
+            answer_type = ""
             for (var i = 0; i < turn.reply.length; i++) {
                 ;(function (el, count) {
+                    chatWindow.set_answer_type("",el.correct)
                     questionsHTML +=
                         '<span class="bubble-button" style="animation-delay: ' +
                         animationTime / 2 * count +
@@ -167,7 +192,7 @@ function Bubbles(container, self, options) {
                         el.question +
                         "', '" +
                         el.correct +
-                        "');this.classList.add('bubble-pick')\">" +
+                        "');this.classList.add('bubble-pick');this.classList.add("+"'"+answer_type+"'"+")\">" +
                         el.question +
                         "</span>"
                 })(turn.reply[i], i)
@@ -339,6 +364,7 @@ function Bubbles(container, self, options) {
         if (bool !== undefined && bool !== "undefined"){
             count += 1
         }
+        console.log(count)
         if (count === 10) {
             if (correct_answers >= 9){
                 result = "award1"

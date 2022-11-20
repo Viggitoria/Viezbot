@@ -49,7 +49,7 @@
             // do this if answer found
             var match = function(key, bool) {
                 setTimeout(function() {
-                    chatWindow.talk(convo, key, bool) // restart current convo from point found in the answer
+                    chatWindow.talk(convo, key, bool) // restart current conversation from point found in the answer
                 }, 600)
             }
 
@@ -82,12 +82,12 @@
                     if (strip(e.question).includes(strip(o.input)) && o.input.length > 0) {
                         found = e.answer
                         bool = e.correct
+                        chatWindow.set_answer_type("ft", bool)
                     }
-                        // Test ab hier
+                        // starting test for keywords here
                     else if (!o.standingAnswer.includes("chapter")){
                         found = search_for_keywords(o.input)
                     }
-                    // Test bis hier
                     else if (found === null) {
                         found = false
                     }
